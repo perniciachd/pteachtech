@@ -9,16 +9,33 @@ export function WebinarCTASection() {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!email) return
-    
+
     setLoading(true)
-    // TODO: Connect to API
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    setSubmitted(true)
-    setLoading(false)
+    setErrorMessage('')
+
+    try {
+      const res = await fetch('/api/webinar/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}))
+        throw new Error(body.error || 'Could not register. Please try again or email learn@pteachtech.in.')
+      }
+
+      setSubmitted(true)
+    } catch (err) {
+      setErrorMessage(err instanceof Error ? err.message : 'Something went wrong.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -34,24 +51,25 @@ export function WebinarCTASection() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-primary-foreground">
               <Calendar className="h-4 w-4" />
-              Free Webinar Series
+              Free monthly webinar
             </div>
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl text-balance">
-              Not ready to commit? Start with a free webinar.
+              Not sure yet? Start with a free webinar.
             </h2>
             <p className="mt-4 text-lg text-primary-foreground/80 leading-relaxed text-pretty">
-              Join our weekly sessions where we cover real-world AI engineering topics, 
-              answer questions, and give you a taste of what our programs offer.
+              One topic per month, presented live by Manan. No recording sold as a course —
+              attend live or read the writeup. We&apos;ll email you when the next one is
+              scheduled.
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                'Live Q&A with instructors',
-                'Real project walkthroughs',
-                'Career guidance sessions',
-                'No commitment required',
+                'Topic-deep, not overview — production patterns explored properly',
+                'Live Q&A with Manan',
+                'Notes + curated reading list emailed after',
+                'No spam — only the next webinar invite + 1 monthly update',
               ].map((item) => (
                 <li key={item} className="flex items-center gap-3 text-primary-foreground/90">
-                  <CheckCircle className="h-5 w-5 text-accent" />
+                  <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
                   {item}
                 </li>
               ))}
@@ -66,19 +84,19 @@ export function WebinarCTASection() {
                   <CheckCircle className="h-8 w-8 text-accent-foreground" />
                 </div>
                 <h3 className="mt-4 text-xl font-semibold text-primary-foreground">
-                  You&apos;re on the list!
+                  You&apos;re on the list.
                 </h3>
                 <p className="mt-2 text-primary-foreground/80">
-                  We&apos;ll send you details about our next webinar.
+                  We&apos;ll email you when the next webinar is scheduled.
                 </p>
               </div>
             ) : (
               <>
                 <h3 className="text-xl font-semibold text-primary-foreground">
-                  Register for the next webinar
+                  Get the next webinar invite
                 </h3>
                 <p className="mt-2 text-sm text-primary-foreground/70">
-                  Every Saturday at 10 AM IST / 11:30 PM EST
+                  First topic: &ldquo;Build a Production RAG in 60 Minutes&rdquo; · launching June 2026
                 </p>
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                   <div>
@@ -95,6 +113,11 @@ export function WebinarCTASection() {
                       className="h-12 bg-white/10 border-white/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-accent focus:ring-accent"
                     />
                   </div>
+                  {errorMessage && (
+                    <p className="text-sm text-accent" role="alert">
+                      {errorMessage}
+                    </p>
+                  )}
                   <Button
                     type="submit"
                     size="lg"
@@ -102,17 +125,18 @@ export function WebinarCTASection() {
                     disabled={loading}
                   >
                     {loading ? (
-                      'Registering...'
+                      'Adding you...'
                     ) : (
                       <>
-                        Reserve Your Spot
+                        Get the next invite
                         <ArrowRight className="h-4 w-4" />
                       </>
                     )}
                   </Button>
                 </form>
                 <p className="mt-4 text-center text-xs text-primary-foreground/60">
-                  By registering, you agree to receive updates about our programs.
+                  By registering, you agree to receive webinar invites + one monthly update.
+                  Unsubscribe anytime.
                 </p>
               </>
             )}

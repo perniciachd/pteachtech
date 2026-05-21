@@ -1,23 +1,23 @@
 import Link from 'next/link'
-import { Linkedin, Twitter, Youtube, Mail } from 'lucide-react'
+import { Linkedin, Mail } from 'lucide-react'
 
 const footerLinks = {
-  programs: [
+  cohorts: [
     { name: 'AI Engineering', href: '/cohorts/ai-engineering' },
-    { name: 'AWS Cloud', href: '/cohorts/aws-cloud' },
-    { name: 'AI Deployment', href: '/cohorts/ai-deployment' },
-    { name: 'Compare Programs', href: '/compare' },
+    { name: 'AWS Cloud-DevSecOps', href: '/cohorts/aws-cloud' },
+    { name: 'AI Deployment (Combined)', href: '/cohorts/ai-deployment' },
+    { name: 'Compare cohorts', href: '/compare' },
   ],
   resources: [
-    { name: 'Workshops', href: '/workshops' },
-    { name: 'Lens Newsletter', href: '/lens' },
+    { name: 'NA Workshops', href: '/workshops' },
+    { name: 'Resume Lens', href: '/lens' },
+    { name: 'Webinars', href: '/webinars' },
     { name: 'Blog', href: '/blog' },
-    { name: 'Alumni', href: '/alumni' },
   ],
   company: [
     { name: 'About', href: '/about' },
-    { name: 'Webinars', href: '/webinars' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Alumni', href: '/alumni' },
+    { name: 'Talk to Manan', href: '/contact' },
   ],
   legal: [
     { name: 'Privacy Policy', href: '/privacy' },
@@ -27,10 +27,8 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { name: 'LinkedIn', href: '#', icon: Linkedin },
-  { name: 'Twitter', href: '#', icon: Twitter },
-  { name: 'YouTube', href: '#', icon: Youtube },
-  { name: 'Email', href: 'mailto:hello@pteachtech.com', icon: Mail },
+  { name: 'LinkedIn — pTeachTech', href: 'https://www.linkedin.com/company/68563633/', icon: Linkedin },
+  { name: 'Email', href: 'mailto:learn@pteachtech.in', icon: Mail },
 ]
 
 export function Footer() {
@@ -47,7 +45,8 @@ export function Footer() {
               <span className="text-xl font-bold text-foreground">pTeachTech</span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-              Build real AI skills with industry experts through cohort-based learning programs.
+              Cohort-based AI and AWS Cloud training for working professionals.
+              From notebooks to production.
             </p>
             <div className="mt-6 flex gap-3">
               {socialLinks.map((item) => (
@@ -66,9 +65,9 @@ export function Footer() {
           {/* Links Columns */}
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-4">
             <div>
-              <h3 className="text-sm font-semibold text-foreground">Programs</h3>
+              <h3 className="text-sm font-semibold text-foreground">Cohorts</h3>
               <ul className="mt-4 space-y-3">
-                {footerLinks.programs.map((item) => (
+                {footerLinks.cohorts.map((item) => (
                   <li key={item.name}>
                     <Link
                       href={item.href}
@@ -133,11 +132,17 @@ export function Footer() {
           <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} pTeachTech. All rights reserved.
           </p>
-          <p className="text-sm text-muted-foreground">
-            A product of{' '}
-            <Link href="#" className="font-medium text-foreground hover:text-primary">
-              Pernicia Brands Private Limited
-            </Link>
+          <p className="text-sm text-muted-foreground text-center sm:text-right">
+            by{' '}
+            <a
+              href="https://pernicia.in"
+              className="font-medium text-foreground hover:text-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Pernicia
+            </a>{' '}
+            · Pernicia Pvt Ltd (India) · Pernicia Corp (Canada)
           </p>
         </div>
       </div>

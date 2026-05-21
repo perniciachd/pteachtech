@@ -81,12 +81,12 @@ function CohortHero({ cohort }: { cohort: Cohort }) {
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Button asChild size="lg" className="gap-2">
                 <Link href="#apply">
-                  Apply Now
+                  Reserve a founding seat
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <Link href="#curriculum">View Curriculum</Link>
+                <Link href="#curriculum">View curriculum</Link>
               </Button>
             </div>
           </div>
@@ -164,30 +164,38 @@ function CurriculumSection({ cohort }: { cohort: Cohort }) {
 }
 
 function PricingSection({ cohort }: { cohort: Cohort }) {
+  const includedFeatures = [
+    'Live, instructor-led (no recordings sold as cohorts)',
+    'Production-grade capstone deployed to a public URL',
+    'Industry-connect sessions with senior practitioners',
+    '60-day post-cohort placement support (India)',
+    'pTeachTech credential + alumni network access',
+  ]
+
   return (
     <section id="pricing" className="scroll-mt-20 bg-secondary/30 py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
-            Investment
+            Pricing
           </h2>
           <p className="mt-4 text-lg text-muted-foreground text-pretty">
-            Transparent pricing with regional options and installment plans
+            Accessible pricing for working professionals · Pernicia Pvt Ltd (INR) or Pernicia Corp (USD)
           </p>
         </div>
-        
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+        <div className={`grid gap-6 ${cohort.pricing.length <= 3 ? 'sm:grid-cols-1 md:grid-cols-3' : 'sm:grid-cols-2 lg:grid-cols-4'}`}>
           {cohort.pricing.map((tier) => (
             <Card key={tier.region} className="relative">
-              {tier.region === 'India' && (
+              {tier.region.startsWith('India') && !tier.region.includes('Tier 2') && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <Badge className="bg-accent text-accent-foreground">Most Popular</Badge>
+                  <Badge className="bg-accent text-accent-foreground">Most accessible</Badge>
                 </div>
               )}
               <CardHeader>
                 <CardTitle className="text-lg">{tier.region}</CardTitle>
                 <CardDescription>
-                  {tier.region === 'NA Workshop Only' ? 'Workshop access only' : 'Full program access'}
+                  {tier.note ?? 'Full cohort access'}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -198,39 +206,29 @@ function PricingSection({ cohort }: { cohort: Cohort }) {
                   </span>
                   <span className="text-muted-foreground ml-1">{tier.currency}</span>
                 </div>
-                {tier.installments && (
+                {tier.installments && tier.installmentAmount && (
                   <p className="text-sm text-muted-foreground mb-4">
                     or {tier.installments} installments of{' '}
                     {tier.currency === 'INR' ? '₹' : '$'}
-                    {tier.installmentAmount?.toLocaleString()}
+                    {tier.installmentAmount.toLocaleString()}
                   </p>
                 )}
                 <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span className="text-muted-foreground">Live sessions</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span className="text-muted-foreground">Project reviews</span>
-                  </li>
-                  {tier.region !== 'NA Workshop Only' && (
-                    <>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-primary" />
-                        <span className="text-muted-foreground">1:1 mentorship</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-primary" />
-                        <span className="text-muted-foreground">Career support</span>
-                      </li>
-                    </>
-                  )}
+                  {includedFeatures.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2">
+                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="text-muted-foreground">{feature}</span>
+                    </li>
+                  ))}
                 </ul>
               </CardContent>
             </Card>
           ))}
         </div>
+
+        <p className="mt-8 text-center text-sm text-muted-foreground">
+          No placement guarantee — we connect, you interview. See FAQ for details.
+        </p>
       </div>
     </section>
   )
@@ -271,23 +269,23 @@ function ApplySection({ cohort }: { cohort: Cohort }) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl text-balance">
-            Ready to get started?
+            Ready to apply?
           </h2>
           <p className="mt-4 text-lg text-primary-foreground/80 text-pretty">
-            {cohort.status === 'open' 
-              ? `Join the ${cohort.name} cohort starting ${cohort.startDate}. Only ${cohort.availableSeats} seats remaining.`
-              : `The ${cohort.name} cohort opens ${cohort.startDate}. Join the waitlist to get notified.`
+            {cohort.status === 'open'
+              ? `The ${cohort.name} cohort starts ${cohort.startDate}. Founding-cohort pricing locked for the first 20 seats. Begin with our 30-minute pre-cohort skill assessment — we respond within 48 hours.`
+              : `The ${cohort.name} cohort opens ${cohort.startDate}. Join the waitlist or book a 15-minute discovery call to discuss fit.`
             }
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2">
-              <Link href="/auth/signup">
-                {cohort.status === 'open' ? 'Start Application' : 'Join Waitlist'}
+              <Link href="/contact">
+                {cohort.status === 'open' ? 'Start the application' : 'Join the waitlist'}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
-              <Link href="/contact">Talk to Us</Link>
+              <Link href="/contact">Talk to Manan (15 min)</Link>
             </Button>
           </div>
         </div>
