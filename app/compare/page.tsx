@@ -418,17 +418,6 @@ function InternalCohortCompare() {
                 })}
               </tr>
               <tr className="border-t bg-secondary/20">
-                <td className="p-4 text-sm font-medium text-foreground">Middle East pricing</td>
-                {cohorts.map((cohort) => {
-                  const meTier = cohort.pricing.find((p) => p.region.startsWith('Middle East'))
-                  return (
-                    <td key={cohort.id} className="p-4 text-center text-sm">
-                      {meTier ? `$${meTier.price.toLocaleString()}` : '—'}
-                    </td>
-                  )
-                })}
-              </tr>
-              <tr className="border-t">
                 <td className="p-4 text-sm font-medium text-foreground">Best for</td>
                 {cohorts.map((cohort) => (
                   <td key={cohort.id} className="p-4 text-center text-xs text-muted-foreground">
@@ -443,7 +432,7 @@ function InternalCohortCompare() {
                   </td>
                 ))}
               </tr>
-              <tr className="border-t bg-secondary/20">
+              <tr className="border-t">
                 <td className="p-4 text-sm font-medium text-foreground">Capstone</td>
                 {cohorts.map((cohort) => (
                   <td key={cohort.id} className="p-4 text-center text-xs text-muted-foreground">

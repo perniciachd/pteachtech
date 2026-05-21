@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-import { getCohortBySlug, cohorts, type Cohort } from '@/lib/data/cohorts'
+import { getCohortBySlug, getDisplayPricing, cohorts, type Cohort } from '@/lib/data/cohorts'
 
 const iconMap = {
   brain: Brain,
@@ -172,6 +172,8 @@ function PricingSection({ cohort }: { cohort: Cohort }) {
     'pTeachTech credential + alumni network access',
   ]
 
+  const displayPricing = getDisplayPricing(cohort)
+
   return (
     <section id="pricing" className="scroll-mt-20 bg-secondary/30 py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -180,18 +182,16 @@ function PricingSection({ cohort }: { cohort: Cohort }) {
             Pricing
           </h2>
           <p className="mt-4 text-lg text-muted-foreground text-pretty">
-            Accessible pricing for working professionals · Pernicia Pvt Ltd (INR) or Pernicia Corp (USD)
+            Accessible pricing for working professionals.
           </p>
         </div>
 
-        <div className={`grid gap-6 ${cohort.pricing.length <= 3 ? 'sm:grid-cols-1 md:grid-cols-3' : 'sm:grid-cols-2 lg:grid-cols-4'}`}>
-          {cohort.pricing.map((tier) => (
+        <div className={`mx-auto grid gap-6 max-w-3xl ${displayPricing.length === 1 ? 'sm:grid-cols-1 max-w-md' : displayPricing.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'}`}>
+          {displayPricing.map((tier) => (
             <Card key={tier.region} className="relative">
-              {tier.region.startsWith('India') && !tier.region.includes('Tier 2') && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <Badge className="bg-accent text-accent-foreground">Most accessible</Badge>
-                </div>
-              )}
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                <Badge className="bg-accent text-accent-foreground">Founding cohort</Badge>
+              </div>
               <CardHeader>
                 <CardTitle className="text-lg">{tier.region}</CardTitle>
                 <CardDescription>
@@ -201,16 +201,13 @@ function PricingSection({ cohort }: { cohort: Cohort }) {
               <CardContent>
                 <div className="mb-4">
                   <span className="text-3xl font-bold text-foreground">
-                    {tier.currency === 'INR' ? '₹' : '$'}
-                    {tier.price.toLocaleString()}
+                    ₹{tier.price.toLocaleString()}
                   </span>
                   <span className="text-muted-foreground ml-1">{tier.currency}</span>
                 </div>
                 {tier.installments && tier.installmentAmount && (
                   <p className="text-sm text-muted-foreground mb-4">
-                    or {tier.installments} installments of{' '}
-                    {tier.currency === 'INR' ? '₹' : '$'}
-                    {tier.installmentAmount.toLocaleString()}
+                    or {tier.installments} installments of ₹{tier.installmentAmount.toLocaleString()}
                   </p>
                 )}
                 <ul className="space-y-2 text-sm">
@@ -226,7 +223,17 @@ function PricingSection({ cohort }: { cohort: Cohort }) {
           ))}
         </div>
 
-        <p className="mt-8 text-center text-sm text-muted-foreground">
+        <div className="mx-auto mt-10 max-w-2xl rounded-2xl border bg-card p-6 text-center">
+          <p className="text-sm font-medium text-foreground">Based outside India?</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            We deliver to learners across the Middle East, Europe, and North America. Pricing depends on region and format — book a 15-minute call with Manan and we&apos;ll walk you through the options.
+          </p>
+          <Button asChild size="sm" className="mt-4">
+            <Link href="/contact">Talk to Manan (15 min)</Link>
+          </Button>
+        </div>
+
+        <p className="mt-6 text-center text-sm text-muted-foreground">
           No placement guarantee — we connect, you interview. See FAQ for details.
         </p>
       </div>

@@ -475,3 +475,17 @@ export function getCohortBySlug(slug: string): Cohort | undefined {
 export function getOpenCohorts(): Cohort[] {
   return cohorts.filter((c) => c.status === 'open' || c.status === 'upcoming')
 }
+
+/**
+ * Returns pricing tiers that should be displayed publicly on the website.
+ *
+ * Currently India-only. Middle East and US/EU pricing is intentionally hidden
+ * on the public site — prospects in those regions are routed to a Manan call
+ * via /contact, where pricing is discussed directly.
+ *
+ * Non-India pricing remains in the cohort definitions for internal reference
+ * (placement planning, internal financial modelling, future surfacing decisions).
+ */
+export function getDisplayPricing(cohort: Cohort): PricingTier[] {
+  return cohort.pricing.filter((tier) => tier.region.startsWith('India'))
+}
