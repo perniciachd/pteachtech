@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 
-const CAL_LINK = process.env.NEXT_PUBLIC_CAL_LINK || 'manan-jindal/15min'
+const CAL_LINK = process.env.NEXT_PUBLIC_CAL_LINK || 'pteachtech/15min'
 
 const contactMethods = [
   {
