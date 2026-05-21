@@ -13,7 +13,8 @@ export async function middleware(request: NextRequest) {
 
   if (isAdminPage || isAdminApi) {
     const cookieValue = request.cookies.get(ADMIN_SESSION_COOKIE)?.value
-    if (!isValidAdminSession(cookieValue)) {
+    const valid = await isValidAdminSession(cookieValue)
+    if (!valid) {
       if (isAdminApi) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
       }

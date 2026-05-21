@@ -1,45 +1,71 @@
 /**
- * Minimal token-based admin auth.
+ * Minimal token-based admin auth — Edge-runtime compatible.
  *
- * Single shared admin password stored in env (ADMIN_TOKEN).
- * On successful login, we set an HTTP-only cookie containing:
+ * Uses Web Crypto API (crypto.subtle) instead of Node's 'crypto' module so
+ * the helpers work in Next.js Edge middleware as well as Node.js runtime
+ * (API routes use `export const runtime = 'nodejs'` but Web Crypto works there too).
  *
+ * Session cookie format:
  *   <expiry_unix_ms>.<hmac>
  *
  * where hmac = HMAC-SHA256(expiry, key = ADMIN_TOKEN).
- *
- * Middleware verifies the cookie on every /admin/* request.
- *
- * This is intentionally lightweight (no DB) — designed for the founding-cohort
- * window. Upgrade to Supabase Auth + multi-admin once cohort 2 starts.
  */
-import crypto from 'crypto'
 
 export const ADMIN_SESSION_COOKIE = 'admin_session'
 const SESSION_DURATION_MS = 7 * 24 * 60 * 60 * 1000 // 7 days
+export const SESSION_DURATION_SECONDS = Math.floor(SESSION_DURATION_MS / 1000)
 
 function getSecret(): string | null {
   return process.env.ADMIN_TOKEN ?? null
 }
 
+/** Compare two equal-length strings in constant time. */
+function constantTimeEqual(a: string, b: string): boolean {
+  if (a.length !== b.length) return false
+  let mismatch = 0
+  for (let i = 0; i < a.length; i++) {
+    mismatch |= a.charCodeAt(i) ^ b.charCodeAt(i)
+  }
+  return mismatch === 0
+}
+
+/** HMAC-SHA256 → hex, using Web Crypto API. */
+async function hmacSha256Hex(key: string, message: string): Promise<string> {
+  const encoder = new TextEncoder()
+  const cryptoKey = await crypto.subtle.importKey(
+    'raw',
+    encoder.encode(key),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign']
+  )
+  const sigBuf = await crypto.subtle.sign('HMAC', cryptoKey, encoder.encode(message))
+  const bytes = new Uint8Array(sigBuf)
+  let hex = ''
+  for (let i = 0; i < bytes.length; i++) {
+    hex += bytes[i].toString(16).padStart(2, '0')
+  }
+  return hex
+}
+
 export function checkAdminPassword(submitted: string): boolean {
   const secret = getSecret()
   if (!secret || !submitted) return false
-  // Constant-time compare
-  if (submitted.length !== secret.length) return false
-  return crypto.timingSafeEqual(Buffer.from(submitted), Buffer.from(secret))
+  return constantTimeEqual(submitted, secret)
 }
 
-export function createSessionCookie(): string {
+export async function createSessionCookie(): Promise<string> {
   const secret = getSecret()
   if (!secret) throw new Error('ADMIN_TOKEN not configured')
   const expiry = Date.now() + SESSION_DURATION_MS
   const payload = String(expiry)
-  const hmac = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+  const hmac = await hmacSha256Hex(secret, payload)
   return `${payload}.${hmac}`
 }
 
-export function isValidAdminSession(cookieValue: string | undefined): boolean {
+export async function isValidAdminSession(
+  cookieValue: string | undefined
+): Promise<boolean> {
   if (!cookieValue) return false
   const secret = getSecret()
   if (!secret) return false
@@ -50,13 +76,6 @@ export function isValidAdminSession(cookieValue: string | undefined): boolean {
   const expiry = Number(expiryStr)
   if (!Number.isFinite(expiry) || expiry < Date.now()) return false
 
-  const expected = crypto.createHmac('sha256', secret).update(expiryStr).digest('hex')
-  if (expected.length !== signature.length) return false
-  try {
-    return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature))
-  } catch {
-    return false
-  }
+  const expected = await hmacSha256Hex(secret, expiryStr)
+  return constantTimeEqual(expected, signature)
 }
-
-export const SESSION_DURATION_SECONDS = Math.floor(SESSION_DURATION_MS / 1000)

@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Incorrect password.' }, { status: 401 })
   }
 
-  const cookieValue = createSessionCookie()
+  const cookieValue = await createSessionCookie()
   const response = NextResponse.json({ ok: true })
   response.cookies.set({
     name: ADMIN_SESSION_COOKIE,
