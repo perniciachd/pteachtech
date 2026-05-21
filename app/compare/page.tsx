@@ -98,7 +98,7 @@ const compareFaqs = [
   {
     question: 'How can your cohort be so much cheaper than premium bootcamps? Is the quality lower?',
     answer:
-      'Different segment, different cost structure. We don\'t spend ₹15K per lead on ads — Resume Lens (our free ATS check, launching Feb 2027) will be our top-of-funnel. We don\'t have a 20-person bench — Manan is the lead trainer. Lower CAC + lean ops = lower price. Quality is set by the curriculum, not the price tag.',
+      'Different segment, different cost structure. We don\'t spend ₹15K per lead on ads — Resume Lens (our free ATS check, launching Feb 2027) will be our top-of-funnel. We don\'t have a 20-person bench — we have one dedicated Instructor. Lower CAC + lean ops = lower price. Quality is set by the curriculum, not the price tag.',
   },
   {
     question: 'Why is your placement track record worse than Bosscoder or Scaler?',
@@ -344,7 +344,7 @@ function DecisionFramework() {
             ))}
           </div>
           <p className="mt-10 text-base text-primary-foreground/80">
-            Answered &ldquo;pTeachTech&rdquo; to 2 of 3? Start with a free ATS check or talk to Manan directly.
+            Answered &ldquo;pTeachTech&rdquo; to 2 of 3? Start with a free ATS check or talk to our Instructor directly.
           </p>
         </div>
       </div>
@@ -535,7 +535,7 @@ function FinalCTA() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
-            Still deciding? Talk to Manan.
+            Still deciding? Talk to our Instructor.
           </h2>
           <p className="mt-4 text-lg text-muted-foreground text-pretty">
             15 minutes, no sales pressure. Bring your dream-job JD and we&apos;ll tell you honestly whether pTeachTech is the right next step — or what is.
@@ -543,7 +543,7 @@ function FinalCTA() {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button asChild size="lg" className="gap-2">
               <Link href="/contact">
-                Talk to Manan (15 min)
+                Talk to our Instructor (15 min)
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>

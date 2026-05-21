@@ -46,7 +46,7 @@ export function HeroSection() {
             <Button asChild variant="outline" size="lg" className="gap-2 text-base">
               <Link href="/contact">
                 <Calendar className="h-4 w-4" />
-                Talk to Manan (15 min)
+                Talk to our Instructor (15 min)
               </Link>
             </Button>
           </div>

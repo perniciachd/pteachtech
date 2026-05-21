@@ -480,7 +480,7 @@ export function getOpenCohorts(): Cohort[] {
  * Returns pricing tiers that should be displayed publicly on the website.
  *
  * Currently India-only. Middle East and US/EU pricing is intentionally hidden
- * on the public site — prospects in those regions are routed to a Manan call
+ * on the public site — prospects in those regions are routed to an Instructor call
  * via /contact, where pricing is discussed directly.
  *
  * Non-India pricing remains in the cohort definitions for internal reference

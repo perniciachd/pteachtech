@@ -57,14 +57,14 @@ export function WebinarCTASection() {
               Not sure yet? Start with a free webinar.
             </h2>
             <p className="mt-4 text-lg text-primary-foreground/80 leading-relaxed text-pretty">
-              One topic per month, presented live by Manan. No recording sold as a course —
+              One topic per month, presented live by our Instructor. No recording sold as a course —
               attend live or read the writeup. We&apos;ll email you when the next one is
               scheduled.
             </p>
             <ul className="mt-6 space-y-3">
               {[
                 'Topic-deep, not overview — production patterns explored properly',
-                'Live Q&A with Manan',
+                'Live Q&A with our Instructor',
                 'Notes + curated reading list emailed after',
                 'No spam — only the next webinar invite + 1 monthly update',
               ].map((item) => (

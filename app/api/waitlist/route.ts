@@ -95,13 +95,13 @@ export async function POST(request: NextRequest) {
         </h2>
         <p>We'll email you when seats open${safeCohort ? ` for the ${safeCohort} cohort` : ''}.</p>
         <p>Founding-cohort pricing applies to the first 20 seats — earliest on the waitlist gets first dibs.</p>
-        <p style="margin-top:24px">— Manan<br/>Lead Trainer, pTeachTech</p>
+        <p style="margin-top:24px">— Team pTeachTech</p>
         <p style="color:#4A4F5A;font-size:12px;margin-top:32px">
           pTeachTech · by Pernicia<br/>
           <a href="https://pteachtech.in">pteachtech.in</a>
         </p>
       `,
-      text: `You're on the waitlist. We'll email you when seats open${cohort ? ` for the ${cohort} cohort` : ''}.\n\n— Manan\npteachtech.in`,
+      text: `You're on the waitlist. We'll email you when seats open${cohort ? ` for the ${cohort} cohort` : ''}.\n\n— Team pTeachTech\npteachtech.in`,
     })
 
     return NextResponse.json({ success: true })

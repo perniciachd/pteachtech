@@ -97,17 +97,17 @@ export async function POST(request: NextRequest) {
         </h2>
         <p>We'll email you when the next free webinar is scheduled.</p>
         <p>The first one — <em>Build a Production RAG in 60 Minutes</em> — is launching in June 2026. We'll send a calendar invite once we lock the date.</p>
-        <p>If you'd rather skip the wait and just talk to Manan:
+        <p>If you'd rather skip the wait and just talk to our Instructor:
            <a href="https://pteachtech.in/contact">pteachtech.in/contact</a>
         </p>
-        <p style="margin-top:24px">— Manan<br/>Lead Trainer, pTeachTech</p>
+        <p style="margin-top:24px">— Team pTeachTech</p>
         <p style="color:#4A4F5A;font-size:12px;margin-top:32px">
           pTeachTech · by Pernicia<br/>
           From notebooks to production.<br/>
           <a href="https://pteachtech.in">pteachtech.in</a>
         </p>
       `,
-      text: `You're on the list, ${name ?? 'there'}.\n\nWe'll email you when the next free webinar is scheduled. First one: "Build a Production RAG in 60 Minutes" — launching June 2026.\n\n— Manan\npteachtech.in`,
+      text: `You're on the list, ${name ?? 'there'}.\n\nWe'll email you when the next free webinar is scheduled. First one: "Build a Production RAG in 60 Minutes" — launching June 2026.\n\n— Team pTeachTech\npteachtech.in`,
     })
 
     return NextResponse.json({ success: true })

@@ -226,10 +226,10 @@ function PricingSection({ cohort }: { cohort: Cohort }) {
         <div className="mx-auto mt-10 max-w-2xl rounded-2xl border bg-card p-6 text-center">
           <p className="text-sm font-medium text-foreground">Based outside India?</p>
           <p className="mt-2 text-sm text-muted-foreground">
-            We deliver to learners across the Middle East, Europe, and North America. Pricing depends on region and format — book a 15-minute call with Manan and we&apos;ll walk you through the options.
+            We deliver to learners across the Middle East, Europe, and North America. Pricing depends on region and format — book a 15-minute call with our Instructor and we&apos;ll walk you through the options.
           </p>
           <Button asChild size="sm" className="mt-4">
-            <Link href="/contact">Talk to Manan (15 min)</Link>
+            <Link href="/contact">Talk to our Instructor (15 min)</Link>
           </Button>
         </div>
 
@@ -292,7 +292,7 @@ function ApplySection({ cohort }: { cohort: Cohort }) {
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
-              <Link href="/contact">Talk to Manan (15 min)</Link>
+              <Link href="/contact">Talk to our Instructor (15 min)</Link>
             </Button>
           </div>
         </div>

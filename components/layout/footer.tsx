@@ -17,7 +17,7 @@ const footerLinks = {
   company: [
     { name: 'About', href: '/about' },
     { name: 'Alumni', href: '/alumni' },
-    { name: 'Talk to Manan', href: '/contact' },
+    { name: 'Talk to our Instructor', href: '/contact' },
   ],
   legal: [
     { name: 'Privacy Policy', href: '/privacy' },

@@ -53,7 +53,7 @@ const formatExpectations = [
   {
     icon: Video,
     title: '60–90 minutes live',
-    body: 'Demo + code + Q&A. Manan delivers personally. No marketing intro reels.',
+    body: 'Demo + code + Q&A. Our Instructor delivers personally. No marketing intro reels.',
   },
   {
     icon: MessageSquare,
@@ -113,7 +113,7 @@ export default function WebinarsPage() {
               Free monthly webinars.
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed text-pretty">
-              One topic per month, presented live by Manan. No recordings sold as a course
+              One topic per month, presented live by our Instructor. No recordings sold as a course
               — attend live or read the writeup. Topic-deep, not survey.
             </p>
           </div>

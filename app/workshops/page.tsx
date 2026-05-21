@@ -55,7 +55,7 @@ const formatTopics = [
   {
     icon: Plane,
     title: 'In-person, intensive',
-    body: '3 full days, ~8 hours/day. Manan travels to deliver. No remote attendance — peer presence is part of the value.',
+    body: '3 full days, ~8 hours/day. Our Instructor travels to deliver. No remote attendance — peer presence is part of the value.',
   },
   {
     icon: Users,
@@ -258,7 +258,7 @@ export default function WorkshopsPage() {
                 We announce dates first to the waitlist. Founding-event pricing applies to the first 15 attendees per city.
               </p>
               <p className="mt-4 text-sm text-primary-foreground/70">
-                For pricing in your currency, book a 15-minute call with Manan via{' '}
+                For pricing in your currency, book a 15-minute call with our Instructor via{' '}
                 <Link href="/contact" className="underline">/contact</Link>.
               </p>
             </div>

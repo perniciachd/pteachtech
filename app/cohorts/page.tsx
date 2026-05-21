@@ -85,7 +85,7 @@ function CohortOverviewCard({ cohort }: { cohort: Cohort }) {
             <p className="mt-1 text-xs text-muted-foreground">{indiaTier.note}</p>
           )}
           <p className="mt-2 text-xs text-muted-foreground">
-            Based outside India? <Link href="/contact" className="text-primary hover:underline">Talk to Manan</Link> for pricing.
+            Based outside India? <Link href="/contact" className="text-primary hover:underline">Talk to our Instructor</Link> for pricing.
           </p>
         </div>
 
@@ -130,7 +130,7 @@ export default function CohortsPage() {
                 <Link href="/compare">Compare cohorts</Link>
               </Button>
               <Button asChild variant="ghost">
-                <Link href="/contact">Talk to Manan (15 min)</Link>
+                <Link href="/contact">Talk to our Instructor (15 min)</Link>
               </Button>
             </div>
           </div>
@@ -194,7 +194,7 @@ export default function CohortsPage() {
                   </div>
                   <h3 className="mt-4 font-semibold text-foreground">Pick a cohort</h3>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Use <Link href="/compare" className="text-primary hover:underline">/compare</Link> if you&apos;re unsure which fits, or book a 15-min call with Manan.
+                    Use <Link href="/compare" className="text-primary hover:underline">/compare</Link> if you&apos;re unsure which fits, or book a 15-min call with our Instructor.
                   </p>
                 </CardContent>
               </Card>
@@ -236,7 +236,7 @@ export default function CohortsPage() {
               </p>
               <div className="mt-6 flex justify-center gap-3 flex-wrap">
                 <Button asChild>
-                  <Link href="/contact">Talk to Manan first</Link>
+                  <Link href="/contact">Talk to our Instructor first</Link>
                 </Button>
                 <Button asChild variant="outline">
                   <Link href="/compare">Compare cohorts</Link>

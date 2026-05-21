@@ -111,18 +111,18 @@ export async function POST(request: NextRequest) {
         <h2 style="font-family:Manrope,system-ui,sans-serif;color:#1B2D6B">
           Thanks for reaching out, ${safeName}.
         </h2>
-        <p>I've received your message and will reply within 24 hours on weekdays.</p>
+        <p>We've received your message and will reply within 24 hours on weekdays.</p>
         <p>If you wanted to talk live first, you can also grab a 15-minute slot here:
            <a href="https://pteachtech.in/contact">pteachtech.in/contact</a>
         </p>
-        <p style="margin-top:24px">— Manan</p>
+        <p style="margin-top:24px">— Team pTeachTech</p>
         <p style="color:#4A4F5A;font-size:12px;margin-top:32px">
           pTeachTech · by Pernicia<br/>
           From notebooks to production.<br/>
           <a href="https://pteachtech.in">pteachtech.in</a>
         </p>
       `,
-      text: `Thanks for reaching out, ${name}.\n\nI've received your message and will reply within 24 hours on weekdays.\n\n— Manan\npteachtech.in`,
+      text: `Thanks for reaching out, ${name}.\n\nWe've received your message and will reply within 24 hours on weekdays.\n\n— Team pTeachTech\npteachtech.in`,
     })
 
     if (!internalResult.ok && !('skipped' in internalResult)) {

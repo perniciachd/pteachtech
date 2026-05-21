@@ -79,7 +79,7 @@ export default function ContactPage() {
               Talk to us
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed text-pretty">
-              Cohort questions go to Manan. Enterprise and partnership conversations go to Abhir.
+              Cohort questions go to our Instructor. Enterprise and partnership conversations go to our Founder.
               Reply within 24 hours on weekdays.
             </p>
           </div>
@@ -122,7 +122,7 @@ export default function ContactPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Calendar className="h-5 w-5" />
-                  Talk to Manan (15 min)
+                  Talk to our Instructor (15 min)
                 </CardTitle>
                 <CardDescription>
                   Book a 15-minute discovery call. We&apos;ll discuss cohort fit, your background, and answer any questions.
@@ -135,7 +135,7 @@ export default function ContactPage() {
                     width="100%"
                     height="600"
                     frameBorder="0"
-                    title="Book a 15-minute call with Manan"
+                    title="Book a 15-minute call with our Instructor"
                     className="block w-full"
                   />
                 </div>
