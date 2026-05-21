@@ -49,6 +49,9 @@ export type PaymentRow = {
   contact: string | null
   applicantName: string | null
   applicantEmail: string | null
+  applicantPhone: string | null
+  applicantCountry: string | null
+  githubAssessmentUrl: string | null
   cohortSlug: string | null
   cohortName: string | null
   applicationId: string | null
@@ -112,6 +115,9 @@ export async function listRazorpayPayments(opts?: {
         contact: p.contact,
         applicantName: notes.applicant_name ?? null,
         applicantEmail: notes.applicant_email ?? null,
+        applicantPhone: notes.applicant_phone || null,
+        applicantCountry: notes.applicant_country || null,
+        githubAssessmentUrl: notes.github_assessment_url || null,
         cohortSlug: notes.cohort_slug ?? null,
         cohortName: notes.cohort_name ?? null,
         applicationId: notes.application_id ?? null,

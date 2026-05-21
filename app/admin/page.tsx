@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { RefreshCw, LogOut, ExternalLink, AlertCircle } from 'lucide-react'
+import { RefreshCw, LogOut, ExternalLink, AlertCircle, Github } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -17,6 +17,9 @@ type PaymentRow = {
   contact: string | null
   applicantName: string | null
   applicantEmail: string | null
+  applicantPhone: string | null
+  applicantCountry: string | null
+  githubAssessmentUrl: string | null
   cohortSlug: string | null
   cohortName: string | null
   applicationId: string | null
@@ -293,6 +296,18 @@ export default function AdminDashboard() {
                       <td className="px-3 py-2">
                         <div className="font-medium text-foreground">{p.applicantName || '—'}</div>
                         <div className="text-xs text-muted-foreground">{p.applicantEmail || p.email || '—'}</div>
+                        {p.githubAssessmentUrl && (
+                          <a
+                            href={p.githubAssessmentUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 mt-1 text-xs text-primary hover:underline"
+                          >
+                            <Github className="h-3 w-3" />
+                            Assessment repo
+                            <ExternalLink className="h-3 w-3" />
+                          </a>
+                        )}
                       </td>
                       <td className="px-3 py-2 text-foreground">{p.cohortName || p.cohortSlug || '—'}</td>
                       <td className="px-3 py-2 text-right font-medium text-foreground">{formatInr(p.amountInr)}</td>

@@ -124,6 +124,9 @@ export async function POST(request: NextRequest) {
         cohort_name: cohort.name,
         applicant_email: applicantEmail,
         applicant_name: applicantName,
+        applicant_phone: applicantPhone ?? '',
+        applicant_country: applicantCountry ?? '',
+        github_assessment_url: githubAssessmentUrl ?? '',
       },
     })
 
