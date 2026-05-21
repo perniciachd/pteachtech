@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Linkedin, Mail } from 'lucide-react'
+import { Linkedin, Instagram, Mail } from 'lucide-react'
 
 const footerLinks = {
   cohorts: [
@@ -27,8 +27,9 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { name: 'LinkedIn — pTeachTech', href: 'https://www.linkedin.com/company/68563633/', icon: Linkedin },
-  { name: 'Email', href: 'mailto:learn@pteachtech.in', icon: Mail },
+  { name: 'LinkedIn — pTeachTech', href: 'https://www.linkedin.com/company/68563633/', icon: Linkedin, external: true },
+  { name: 'Instagram — pTeachTech', href: 'https://www.instagram.com/pteachtech/', icon: Instagram, external: true },
+  { name: 'Email', href: 'mailto:learn@pteachtech.in', icon: Mail, external: false },
 ]
 
 export function Footer() {
@@ -55,6 +56,8 @@ export function Footer() {
                   href={item.href}
                   className="flex h-9 w-9 items-center justify-center rounded-lg bg-secondary text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                   aria-label={item.name}
+                  target={item.external ? '_blank' : undefined}
+                  rel={item.external ? 'noopener noreferrer' : undefined}
                 >
                   <item.icon className="h-4 w-4" />
                 </Link>
