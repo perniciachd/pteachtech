@@ -1,52 +1,33 @@
-import { Users, Linkedin, ArrowRight } from 'lucide-react'
+import { Users, ArrowRight, Mail, Calendar } from 'lucide-react'
 import Link from 'next/link'
 import { MarketingLayout } from '@/components/layout'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
 export const metadata = {
   title: 'Alumni',
-  description: 'Meet our global community of pTeachTech alumni making an impact in tech.',
+  description:
+    'pTeachTech alumni network — early days. First cohort completes August 2026. Honest outcomes will be published here as they happen, not before.',
+  alternates: { canonical: 'https://pteachtech.in/alumni' },
 }
 
-// Placeholder alumni - will be replaced with real data
-const featuredAlumni = [
+const whatTheNetworkOffers = [
   {
-    name: 'Alumni Name',
-    role: 'AI Engineer',
-    company: 'Tech Company',
-    cohort: 'AI Engineering - Cohort 1',
-    testimonial: 'The program completely transformed my career. I went from a traditional developer to an AI engineer in just 12 weeks.',
-    image: null,
-    linkedin: '#',
+    icon: Calendar,
+    title: 'Permanent community access',
+    body: 'Lifetime access to the pTeachTech Slack/Circle community — peer help, monthly AMAs, job-board, hiring leads from partners.',
   },
   {
-    name: 'Alumni Name',
-    role: 'Cloud Architect',
-    company: 'Tech Company',
-    cohort: 'AWS Cloud - Cohort 2',
-    testimonial: 'The hands-on projects and mentorship were exactly what I needed to level up my cloud skills.',
-    image: null,
-    linkedin: '#',
+    icon: Mail,
+    title: '60-day post-cohort placement support',
+    body: 'Mock interviews, resume reviews, portfolio polish, partner introductions (where applicable). Active for 60 days after your cohort ends.',
   },
   {
-    name: 'Alumni Name',
-    role: 'MLOps Engineer',
-    company: 'Tech Company',
-    cohort: 'AI Deployment - Cohort 1',
-    testimonial: 'Finally understood how to take models from notebooks to production. Game changer.',
-    image: null,
-    linkedin: '#',
+    icon: Users,
+    title: 'Cross-cohort connections',
+    body: 'Alumni from AI, AWS, and Combined cohorts share one community. The network compounds as cohorts ship.',
   },
-]
-
-const stats = [
-  { value: '500+', label: 'Total Alumni' },
-  { value: '25+', label: 'Countries' },
-  { value: '85%', label: 'Career Growth' },
-  { value: '92%', label: 'Would Recommend' },
 ]
 
 export default function AlumniPage() {
@@ -56,29 +37,39 @@ export default function AlumniPage() {
       <section className="bg-gradient-to-b from-secondary/50 to-background py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground mb-8">
-              <Users className="h-8 w-8" />
-            </div>
+            <Badge className="mb-4" variant="secondary">
+              Cohort 1 starts July 20, 2026 · Cohort 1 graduates Aug 29, 2026
+            </Badge>
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl text-balance">
-              Alumni Network
+              No alumni yet.
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed text-pretty">
-              Join a global community of ambitious engineers who&apos;ve transformed their careers 
-              through pTeachTech programs. Our alumni network spans companies worldwide.
+              We launched mid-2026. First cohort completes August 2026. The alumni outcomes you
+              read on this page going forward will be <em>real</em> — with names (where the
+              alumnus consents), real LinkedIn links, real companies, real testimonials. No stock
+              photos. No &ldquo;5,000+ engineers transformed.&rdquo; No fabricated stats.
+            </p>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Until then, here&apos;s what the alumni network actually offers.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-16">
+      {/* What network offers */}
+      <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-            {stats.map((stat) => (
-              <Card key={stat.label} className="text-center">
+          <div className="grid gap-6 sm:grid-cols-3 max-w-5xl mx-auto">
+            {whatTheNetworkOffers.map((item) => (
+              <Card key={item.title}>
                 <CardContent className="pt-6">
-                  <div className="text-3xl font-bold text-primary">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+                    <item.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-4 font-semibold text-foreground">{item.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                    {item.body}
+                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -86,41 +77,50 @@ export default function AlumniPage() {
         </div>
       </section>
 
-      {/* Featured Alumni */}
+      {/* What's coming */}
       <section className="bg-secondary/30 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-foreground mb-8">Featured Alumni</h2>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {featuredAlumni.map((alumni) => (
-              <Card key={alumni.name}>
-                <CardHeader>
-                  <div className="flex items-start gap-4">
-                    <Avatar className="h-14 w-14">
-                      <AvatarImage src={alumni.image || undefined} alt={alumni.name} />
-                      <AvatarFallback className="bg-primary text-primary-foreground">
-                        {alumni.name.split(' ').map(n => n[0]).join('')}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <CardTitle className="text-lg">{alumni.name}</CardTitle>
-                      <CardDescription>{alumni.role} at {alumni.company}</CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <Badge variant="outline" className="mb-4">{alumni.cohort}</Badge>
-                  <p className="text-sm text-muted-foreground italic">
-                    &ldquo;{alumni.testimonial}&rdquo;
+          <div className="mx-auto max-w-3xl">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance text-center">
+              What we&apos;ll publish here
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground text-pretty text-center">
+              Over the next 6–12 months, this page fills with real outcomes.
+            </p>
+
+            <div className="mt-10 space-y-4">
+              <Card>
+                <CardContent className="pt-6">
+                  <h3 className="font-semibold text-foreground">Named capstone showcases</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Each cohort graduate produces a deployed production system (RAG, reference
+                    architecture, multi-cloud deployment). Top performers — with their consent —
+                    get featured with photo, role, capstone repo link, and short writeup.
                   </p>
-                  <Button asChild variant="ghost" size="sm" className="mt-4 gap-2">
-                    <Link href={alumni.linkedin}>
-                      <Linkedin className="h-4 w-4" />
-                      Connect
-                    </Link>
-                  </Button>
                 </CardContent>
               </Card>
-            ))}
+              <Card>
+                <CardContent className="pt-6">
+                  <h3 className="font-semibold text-foreground">Honest outcome reports</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Once enough cohorts have run, we&apos;ll publish aggregate placement data:
+                    how many graduates, how many placed within 60 days, into what companies,
+                    median CTC delta. Real numbers, not vanity claims. If a cohort underperforms,
+                    we&apos;ll publish that too.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <h3 className="font-semibold text-foreground">Career trajectories</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Where alumni are 6 months, 1 year, 2 years later. Promoted to senior?
+                    Switched companies? Built a side project? Started something themselves? The
+                    network value compounds as alumni outcomes do.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
@@ -130,17 +130,24 @@ export default function AlumniPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
-              Ready to join the community?
+              Want to be a founding alumnus?
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Start your journey with one of our cohort programs and become part of our growing alumni network.
+            <p className="mt-4 text-lg text-muted-foreground text-pretty">
+              The first 20 founding-cohort enrollees will literally be Cohort 1. Reserve a seat,
+              ship a real capstone, and your name and outcomes might be the first ones featured
+              on this page in September 2026.
             </p>
-            <Button asChild size="lg" className="mt-8 gap-2">
-              <Link href="/cohorts">
-                Explore Programs
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
+            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Button asChild size="lg" className="gap-2">
+                <Link href="/cohorts">
+                  View cohorts
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/compare">Compare cohorts</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
