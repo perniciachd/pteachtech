@@ -80,7 +80,7 @@ function CohortHero({ cohort }: { cohort: Cohort }) {
             
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Button asChild size="lg" className="gap-2">
-                <Link href="#apply">
+                <Link href={`/apply?cohort=${cohort.slug}`}>
                   Reserve a founding seat
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -286,8 +286,8 @@ function ApplySection({ cohort }: { cohort: Cohort }) {
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2">
-              <Link href="/contact">
-                {cohort.status === 'open' ? 'Start the application' : 'Join the waitlist'}
+              <Link href={cohort.status === 'open' ? `/apply?cohort=${cohort.slug}` : '/contact'}>
+                {cohort.status === 'open' ? 'Reserve your seat' : 'Join the waitlist'}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>

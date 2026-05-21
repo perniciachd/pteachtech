@@ -39,7 +39,7 @@ export function StickyCohortBar() {
         </div>
         <div className="flex items-center gap-2 flex-shrink-0">
           <Button size="sm" asChild>
-            <Link href={`/cohorts/${nextCohort.slug}`}>
+            <Link href={isOpen ? `/apply?cohort=${nextCohort.slug}` : `/cohorts/${nextCohort.slug}`}>
               {isOpen ? 'Reserve seat' : 'View details'}
             </Link>
           </Button>

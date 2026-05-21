@@ -99,7 +99,7 @@ function CohortOverviewCard({ cohort }: { cohort: Cohort }) {
           </Button>
           {isOpen && (
             <Button asChild variant="outline">
-              <Link href={`/cohorts/${cohort.slug}#apply`}>Reserve seat</Link>
+              <Link href={`/apply?cohort=${cohort.slug}`}>Reserve seat</Link>
             </Button>
           )}
         </div>
