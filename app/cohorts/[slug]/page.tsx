@@ -321,9 +321,32 @@ export default async function CohortDetailPage(props: { params: Promise<{ slug: 
   if (!cohort) {
     notFound()
   }
-  
+
+  const courseSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: cohort.name,
+    description: cohort.description,
+    provider: {
+      '@type': 'Organization',
+      name: 'pTeachTech',
+      url: 'https://pteachtech.in',
+    },
+    hasCourseInstance: {
+      '@type': 'CourseInstance',
+      courseMode: cohort.b2b ? ['Onsite', 'Online'] : 'Online',
+      courseWorkload: cohort.duration,
+      instructor: cohort.instructors.map((i) => ({ '@type': 'Person', name: i.name })),
+    },
+    about: cohort.highlights,
+  }
+
   return (
     <MarketingLayout showCohortBar={false}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+      />
       <CohortHero cohort={cohort} />
       <CurriculumSection cohort={cohort} />
       <PricingSection cohort={cohort} />
