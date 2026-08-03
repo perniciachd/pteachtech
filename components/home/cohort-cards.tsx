@@ -65,10 +65,10 @@ export function CohortCardsSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
-            Three cohorts. Pick your path.
+            Enterprise programs for your team.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground text-pretty">
-            AI Engineering · AWS Cloud-DevSecOps · AI Deployment (Combined, placement-anchored). Live, instructor-led, six weeks each — except Combined, which is four.
+            Our flagship — Multi-Agent Copilot &amp; Enterprise AI Architecture — delivered privately to your team, plus applied cohorts in AI Engineering and AWS Cloud. Practitioner-led, hands-on, production-grade.
           </p>
         </div>
         <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">

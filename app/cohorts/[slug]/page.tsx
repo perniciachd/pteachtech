@@ -139,7 +139,7 @@ function CurriculumSection({ cohort }: { cohort: Cohort }) {
                 <Card className="ml-10 lg:ml-0">
                   <CardHeader className="pb-2">
                     <div className="flex items-center gap-2">
-                      <Badge variant="outline">Week {week.week}</Badge>
+                      <Badge variant="outline">{cohort.curriculumUnitLabel ?? 'Week'} {week.week}</Badge>
                     </div>
                     <CardTitle className="text-lg">{week.title}</CardTitle>
                   </CardHeader>
@@ -182,10 +182,11 @@ function PricingSection({ cohort }: { cohort: Cohort }) {
             Pricing
           </h2>
           <p className="mt-4 text-lg text-muted-foreground text-pretty">
-            Accessible pricing for working professionals.
+            {cohort.b2b ? 'Competitive, tailored to format, scope & team size.' : 'Accessible pricing for working professionals.'}
           </p>
         </div>
 
+        {displayPricing.length > 0 && (
         <div className={`mx-auto grid gap-6 max-w-3xl ${displayPricing.length === 1 ? 'sm:grid-cols-1 max-w-md' : displayPricing.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'}`}>
           {displayPricing.map((tier) => (
             <Card key={tier.region} className="relative">
@@ -222,11 +223,14 @@ function PricingSection({ cohort }: { cohort: Cohort }) {
             </Card>
           ))}
         </div>
+        )}
 
         <div className="mx-auto mt-10 max-w-2xl rounded-2xl border bg-card p-6 text-center">
-          <p className="text-sm font-medium text-foreground">Based outside India?</p>
+          <p className="text-sm font-medium text-foreground">{cohort.b2b ? 'Bring this program to your team' : 'Based outside India?'}</p>
           <p className="mt-2 text-sm text-muted-foreground">
-            We deliver to learners across the Middle East, Europe, and North America. Pricing depends on region and format — book a 15-minute call with our Instructor and we&apos;ll walk you through the options.
+            {cohort.b2b
+              ? "Delivered privately to your team — onsite or virtual, across the US, Europe and beyond. Pricing is competitive and tailored to format, scope and team size. Book a call and we'll scope a program for you."
+              : "We deliver to learners across the Middle East, Europe, and North America. Pricing depends on region and format — book a 15-minute call with our Instructor and we'll walk you through the options."}
           </p>
           <Button asChild size="sm" className="mt-4">
             <Link href="/contact">Talk to our Instructor (15 min)</Link>

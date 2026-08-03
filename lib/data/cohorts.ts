@@ -44,6 +44,10 @@ export interface Cohort {
   totalSeats: number
   availableSeats: number
   status: 'upcoming' | 'open' | 'in_progress' | 'completed'
+  /** Label for curriculum units. Defaults to 'Week'. B2B programs use 'Module'. */
+  curriculumUnitLabel?: string
+  /** B2B = private team/enterprise program (no public per-seat sale). */
+  b2b?: boolean
   highlights: string[]
   curriculum: CurriculumWeek[]
   pricing: PricingTier[]
@@ -54,6 +58,153 @@ export interface Cohort {
 }
 
 export const cohorts: Cohort[] = [
+  // ============================================================
+  // FLAGSHIP (B2B): Multi-Agent Copilot & Enterprise AI Architecture
+  // Private, team-based enterprise program. No public per-seat price.
+  // ============================================================
+  {
+    id: 'enterprise-copilot',
+    slug: 'enterprise-copilot',
+    name: 'Multi-Agent Copilot & Enterprise AI Architecture',
+    tagline: 'Design, secure & ship enterprise multi-agent Copilot systems',
+    description:
+      'A hands-on B2B enterprise program for building governed, observable multi-agent Copilot systems on Microsoft Copilot Studio, Power Platform & Azure — from single-agent design to a fully deployed enterprise capstone. Delivered by 15+ year practitioners who don\'t just teach this — they architect and ship production multi-agent AI for US and European enterprises.',
+    icon: 'rocket',
+    color: 'secondary',
+    duration: '5-day core or 10-day enterprise track · instructor-led + hands-on labs',
+    startDate: 'Rolling · private team cohorts',
+    totalSeats: 20,
+    availableSeats: 20,
+    status: 'open',
+    curriculumUnitLabel: 'Module',
+    b2b: true,
+    highlights: [
+      'Delivered by 15+ year practitioners who build multi-agent AI for US & European enterprises — not just teach it',
+      'Hands-on labs every module — orchestrator, domain & guardrail agents on Copilot Studio + Azure',
+      'Enterprise-grade: Entra ID security, Key Vault, RBAC, observability & governance',
+      'Capstone: a complete, deployed multi-agent enterprise solution',
+      'Private team cohorts · onsite or virtual · competitive pricing',
+    ],
+    curriculum: [
+      { week: 1, title: 'Module 1 · Copilot Fundamentals & Single-Agent Design', topics: [
+        'Copilot Studio and what an AI agent is',
+        'Topics, triggers, entities & variables',
+        'Power Automate integration basics',
+        'Limits of single-agent systems — Lab: build a Copilot',
+      ] },
+      { week: 2, title: 'Module 2 · Multi-Agent Architecture Fundamentals', topics: [
+        'Single vs multi-agent architecture',
+        'Agent types: orchestrator/router, domain (KB/API/DB), guardrail',
+        'Stateless vs stateful & responsibility boundaries',
+        'Lab: split a Copilot into multiple agents',
+      ] },
+      { week: 3, title: 'Module 3 · Agent Design & Orchestration Patterns', topics: [
+        'Splitting criteria & anti-patterns (overloaded agent, tight coupling)',
+        'Orchestration: central, skill-based, intent & confidence routing',
+        'Agent routing strategies',
+        'Lab: build an orchestrator + routing logic',
+      ] },
+      { week: 4, title: 'Module 4 · Agent Communication & Integration', topics: [
+        'Agent-to-agent comms & canonical JSON contracts',
+        'Chaining via Power Automate, HTTP & custom connectors',
+        'Secured integration: Entra ID, Managed Identity, Graph, on-prem SQL/Dataverse',
+        'Labs: JSON comms, chain agents, API-based agent',
+      ] },
+      { week: 5, title: 'Module 5 · Security, Governance & Environment Strategy', topics: [
+        'Prompt-injection defense & guardrail agents',
+        'Approval-based execution & DLP-safe segregation',
+        'RBAC, Conditional Access, Azure Key Vault & secrets',
+        'DEV/TEST/PROD, audit & governance — Labs: guardrail, approvals, secrets',
+      ] },
+      { week: 6, title: 'Module 6 · Knowledge Management & Retrieval Design', topics: [
+        'Central vs per-agent knowledge base',
+        'Deterministic lookup vs generative reasoning',
+        'Fallback & ambiguity resolution',
+        'Lab: KB + data agents with fallback',
+      ] },
+      { week: 7, title: 'Module 7 · Observability, Monitoring & Error Handling', topics: [
+        'Cross-agent traceability & correlation IDs',
+        'Error handling, replay & audit scenarios',
+        'Azure Monitor, Application Insights, Log Analytics & distributed tracing',
+        'Labs: logging, tracing, observability dashboard',
+      ] },
+      { week: 8, title: 'Module 8 · Versioning, Scaling & Deployment', topics: [
+        'Agent versioning & backward compatibility',
+        'Deployment & scaling strategies',
+        'Publish to Microsoft Teams · enterprise rollout',
+        'Lab: deploy, version-upgrade & publish',
+      ] },
+      { week: 9, title: 'Module 9 · Enterprise Integration & Hybrid AI Operations', topics: [
+        'Hybrid AI architecture, Azure API Management & Service Bus',
+        'Enterprise integration: AD, Exchange, ServiceNow, SQL',
+        'On-prem monitoring & governance for hybrid AI',
+        'Lab: hybrid monitoring agent + operational AI dashboard',
+      ] },
+      { week: 10, title: 'Capstone · End-to-End Enterprise Solution', topics: [
+        'Build: orchestrator + 2 domain agents + 1 validation agent',
+        'Implement routing, security & monitoring',
+        'End-to-end deployment',
+        'Reviewed against production standards',
+      ] },
+    ],
+    pricing: [],
+    instructors: [
+      {
+        name: 'Manan Jindal',
+        title: 'Principal Trainer & Solution Architect · 15+ years',
+        company: 'pTeachTech · Pernicia (Canada)',
+        linkedin: 'https://linkedin.com/in/manan-jindal',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is this a private, team-based program?',
+        answer:
+          'Yes. This is a B2B program delivered privately to your team — onsite or virtual — and tailored to your stack and goals. We don\'t sell individual seats for this program.',
+      },
+      {
+        question: 'How experienced are the trainers?',
+        answer:
+          'Delivered by 15+ year practitioners who architect and ship production multi-agent AI systems for US and European enterprises. You learn from people who build this in production — not only teach it.',
+      },
+      {
+        question: 'Is it hands-on?',
+        answer:
+          'Every module has a lab, culminating in a deployed multi-agent enterprise capstone. Environments are pre-provisioned so no session time is lost to setup.',
+      },
+      {
+        question: 'Is it a 5-day or 10-day program?',
+        answer:
+          'A 5-day core covers design & build; the 10-day enterprise track adds advanced security, observability and enterprise integration for Azure-experienced teams. We scope the right length with you.',
+      },
+      {
+        question: 'What does it cost?',
+        answer:
+          'Pricing is competitive and tailored to format, scope and team size. Talk to us and we\'ll scope a program for your team.',
+      },
+      {
+        question: 'Do we need our own environment?',
+        answer:
+          'Ideally your team uses your own Microsoft tenant (most secure). If not, we can provision a training environment. We confirm this on a readiness call before delivery.',
+      },
+    ],
+    outcomes: [
+      'Design & build multi-agent Copilot systems (orchestrator, domain, guardrail)',
+      'Secure agents with Entra ID, RBAC, Key Vault, DLP & governance',
+      'Instrument full observability with Azure Monitor, App Insights & tracing',
+      'Deploy & scale agents to Teams and the enterprise',
+      'Ship a complete, deployed multi-agent enterprise capstone',
+      'Earn the pTeachTech Enterprise Multi-Agent AI credential',
+    ],
+    prerequisites: [
+      'For teams: developers, solution architects & Power Platform makers',
+      'Comfort with APIs, JSON & basic cloud concepts',
+      'Enterprise track: some Azure (identity/networking) experience',
+      'Access to a Copilot Studio / Power Platform + Azure environment (we help provision)',
+      'Delivered privately to your team — onsite or virtual',
+    ],
+  },
+
   // ============================================================
   // COHORT 1: AI Engineering
   // ============================================================
@@ -148,7 +299,7 @@ export const cohorts: Cohort[] = [
       {
         name: 'Manan Jindal',
         title: 'Lead Trainer',
-        company: 'pTeachTech (by Pernicia)',
+        company: 'pTeachTech · Pernicia (Canada)',
         linkedin: 'https://linkedin.com/in/manan-jindal',
       },
     ],
@@ -299,7 +450,7 @@ export const cohorts: Cohort[] = [
       {
         name: 'Manan Jindal',
         title: 'Lead Trainer',
-        company: 'pTeachTech (by Pernicia)',
+        company: 'pTeachTech · Pernicia (Canada)',
         linkedin: 'https://linkedin.com/in/manan-jindal',
       },
     ],
@@ -421,7 +572,7 @@ export const cohorts: Cohort[] = [
       {
         name: 'Manan Jindal',
         title: 'Lead Trainer',
-        company: 'pTeachTech (by Pernicia)',
+        company: 'pTeachTech · Pernicia (Canada)',
         linkedin: 'https://linkedin.com/in/manan-jindal',
       },
     ],
