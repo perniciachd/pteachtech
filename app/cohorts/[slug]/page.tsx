@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowRight, Brain, Cloud, Rocket, Calendar, Users, Clock, CheckCircle, ChevronDown } from 'lucide-react'
 import { MarketingLayout } from '@/components/layout'
+import { DeliveredForSection } from '@/components/home'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -349,6 +350,7 @@ export default async function CohortDetailPage(props: { params: Promise<{ slug: 
       />
       <CohortHero cohort={cohort} />
       <CurriculumSection cohort={cohort} />
+      {cohort.b2b && <DeliveredForSection />}
       <PricingSection cohort={cohort} />
       <FAQSection cohort={cohort} />
       <ApplySection cohort={cohort} />
