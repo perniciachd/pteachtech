@@ -1,29 +1,29 @@
-import { Rocket, ShieldCheck, Clock, IndianRupee } from 'lucide-react'
+import { Rocket, ShieldCheck, Users, Building2 } from 'lucide-react'
 
 const pillars = [
   {
-    icon: Rocket,
-    title: 'Production-first',
+    icon: Users,
+    title: 'Practitioner-led',
     description:
-      'One deployed, observable, defendable system on your GitHub beats six tutorial demos. Recruiters can open a live URL — they skim portfolios of slides.',
+      'Delivered by 15+ year practitioners who architect and ship production multi-agent AI for US & European enterprises — not trainers reading slides.',
+  },
+  {
+    icon: Rocket,
+    title: 'Hands-on, deployed',
+    description:
+      'A lab every module, culminating in a deployed multi-agent enterprise capstone your team owns. Environments are pre-provisioned so no session time is lost.',
   },
   {
     icon: ShieldCheck,
-    title: 'BFSI vertical depth',
+    title: 'Enterprise-grade',
     description:
-      'RBI, SEBI, DPDP, GDPR built into every relevant module. Most cohorts skip regulated-industry context. For BFSI engineers, this is the unlock.',
+      'Entra ID security, Key Vault, RBAC, DLP, observability and governance built in — the parts most courses skip and enterprises can\'t.',
   },
   {
-    icon: Clock,
-    title: 'Working-pro cadence',
+    icon: Building2,
+    title: 'Private to your team',
     description:
-      '2 hours per day, 5 evenings a week, for 6 weeks. 7–9 PM IST covers India and the Middle East. Designed for engineers who hold day jobs.',
-  },
-  {
-    icon: IndianRupee,
-    title: 'Accessible pricing',
-    description:
-      '₹30–40K vs ₹1+ Lakh premium bootcamps. Made possible by low-CAC funnels and lean ops — passed to learners as lower price, not lower quality.',
+      'Delivered privately, onsite or virtual, and tailored to your stack and goals. Competitive pricing scoped to team size and format.',
   },
 ]
 

@@ -16,7 +16,9 @@ export function StickyCohortBar() {
   if (dismissed || !nextCohort) return null
 
   const isOpen = nextCohort.status === 'open'
-  const seatsLabel = isOpen
+  const seatsLabel = nextCohort.b2b
+    ? 'Private · onsite or virtual'
+    : isOpen
     ? `${nextCohort.availableSeats} of ${nextCohort.totalSeats} founding seats`
     : 'Waitlist open'
 
@@ -30,17 +32,19 @@ export function StickyCohortBar() {
           <span className="font-semibold text-primary truncate">
             {nextCohort.name}
           </span>
-          <span className="hidden text-muted-foreground sm:inline whitespace-nowrap">
-            starts {nextCohort.startDate}
-          </span>
+          {!nextCohort.b2b && (
+            <span className="hidden text-muted-foreground sm:inline whitespace-nowrap">
+              starts {nextCohort.startDate}
+            </span>
+          )}
           <span className="hidden rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary md:inline whitespace-nowrap">
             {seatsLabel}
           </span>
         </div>
         <div className="flex items-center gap-2 flex-shrink-0">
           <Button size="sm" asChild>
-            <Link href={isOpen ? `/apply?cohort=${nextCohort.slug}` : `/cohorts/${nextCohort.slug}`}>
-              {isOpen ? 'Reserve seat' : 'View details'}
+            <Link href={nextCohort.b2b ? '/contact' : isOpen ? `/apply?cohort=${nextCohort.slug}` : `/cohorts/${nextCohort.slug}`}>
+              {nextCohort.b2b ? 'Talk to us' : isOpen ? 'Reserve seat' : 'View details'}
             </Link>
           </Button>
           <Button

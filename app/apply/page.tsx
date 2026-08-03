@@ -1,7 +1,7 @@
 'use client'
 
 import { Suspense, useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams, redirect } from 'next/navigation'
 import Script from 'next/script'
 import Link from 'next/link'
 import { ArrowRight, CheckCircle, Shield } from 'lucide-react'
@@ -404,6 +404,8 @@ function ApplyPageInner() {
 }
 
 export default function ApplyPage() {
+  // Enterprise-only: self-serve B2C application is retired. Route to enquiry.
+  redirect('/contact')
   return (
     <Suspense fallback={
       <MarketingLayout>

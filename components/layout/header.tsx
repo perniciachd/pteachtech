@@ -20,18 +20,14 @@ import {
 
 const navigation = {
   programs: [
-    { name: 'AI Engineering', href: '/cohorts/ai-engineering', description: 'From notebooks to production · 6 weeks' },
-    { name: 'AWS Cloud-DevSecOps', href: '/cohorts/aws-cloud', description: 'Build cloud you can defend · 6 weeks' },
-    { name: 'AI Deployment (Combined)', href: '/cohorts/ai-deployment', description: 'Placement-anchored multi-cloud · 4 weeks' },
+    { name: 'Multi-Agent Copilot & Enterprise AI Architecture', href: '/cohorts/enterprise-copilot', description: 'Private enterprise program · Copilot Studio + Azure' },
   ],
   main: [
-    { name: 'Cohorts', href: '/cohorts' },
-    { name: 'Compare', href: '/compare' },
+    { name: 'Programs', href: '/cohorts' },
     { name: 'About', href: '/about' },
   ],
   secondary: [
     { name: 'Workshops', href: '/workshops' },
-    { name: 'Resume Lens', href: '/lens' },
     { name: 'Blog', href: '/blog' },
   ],
 }

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 import { Check, X, ArrowRight, Minus } from 'lucide-react'
 import { MarketingLayout } from '@/components/layout'
 import { Button } from '@/components/ui/button'
@@ -562,6 +563,8 @@ function FinalCTA() {
 }
 
 export default function ComparePage() {
+  // Enterprise-only: nothing to compare — route to the single program listing.
+  if (cohorts.length < 2) redirect('/cohorts')
   // Schema.org FAQ markup for SEO
   const faqSchema = {
     '@context': 'https://schema.org',

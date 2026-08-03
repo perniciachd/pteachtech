@@ -44,8 +44,14 @@ export function CohortCard({ cohort }: CohortCardProps) {
         </ul>
         <div className="flex items-center justify-between">
           <div className="text-sm">
-            <span className="text-muted-foreground">Starts </span>
-            <span className="font-medium text-foreground">{cohort.startDate}</span>
+            {cohort.b2b ? (
+              <span className="font-medium text-foreground">Private · onsite or virtual</span>
+            ) : (
+              <>
+                <span className="text-muted-foreground">Starts </span>
+                <span className="font-medium text-foreground">{cohort.startDate}</span>
+              </>
+            )}
           </div>
           <Button asChild variant="ghost" className="gap-1 group-hover:bg-accent">
             <Link href={`/cohorts/${cohort.slug}`}>
