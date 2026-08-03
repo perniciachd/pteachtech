@@ -90,7 +90,7 @@ export async function POST(request: NextRequest) {
 
         // Notify internal team
         await sendEmail({
-          to: ['manan@pteachtech.in', 'abhir@pernicia.in'],
+          to: ['perniciachd@gmail.com', 'perniciachd@gmail.com'],
           subject: `💰 Payment captured · ${applicantName} · ${cohortName}`,
           html: `
             <h2 style="font-family:Manrope,system-ui,sans-serif;color:#1B2D6B">
@@ -156,7 +156,7 @@ export async function POST(request: NextRequest) {
         const applicantEmail = payment.email ?? notes.applicant_email ?? '—'
 
         await sendEmail({
-          to: 'manan@pteachtech.in',
+          to: 'perniciachd@gmail.com',
           subject: `⚠️ Payment failed · ${notes.applicant_name ?? 'unknown applicant'}`,
           html: `
             <h2 style="font-family:Manrope,system-ui,sans-serif;color:#1B2D6B">
@@ -182,7 +182,7 @@ export async function POST(request: NextRequest) {
         const amountInr = (refund.amount / 100).toLocaleString('en-IN')
 
         await sendEmail({
-          to: 'manan@pteachtech.in',
+          to: 'perniciachd@gmail.com',
           subject: `↩️ Refund created · ₹${amountInr}`,
           html: `
             <p><strong>Refund ID:</strong> ${refund.id}</p>

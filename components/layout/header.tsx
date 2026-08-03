@@ -23,7 +23,6 @@ const navigation = {
     { name: 'Multi-Agent Copilot & Enterprise AI Architecture', href: '/cohorts/enterprise-copilot', description: 'Private enterprise program · Copilot Studio + Azure' },
   ],
   main: [
-    { name: 'Programs', href: '/cohorts' },
     { name: 'About', href: '/about' },
   ],
   secondary: [
@@ -84,10 +83,10 @@ export function Header() {
         {/* Desktop CTA */}
         <div className="hidden items-center gap-3 lg:flex">
           <Button variant="ghost" asChild>
-            <Link href="/contact">Talk to our Instructor</Link>
+            <Link href="/cohorts/enterprise-copilot">View program</Link>
           </Button>
           <Button asChild>
-            <Link href="/cohorts">View Cohorts</Link>
+            <Link href="/contact">Book a scoping call</Link>
           </Button>
         </div>
 
@@ -144,12 +143,12 @@ export function Header() {
               <div className="mt-4 flex flex-col gap-2 px-3">
                 <Button variant="outline" asChild className="w-full">
                   <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                    Talk to our Instructor
+                    Book a scoping call
                   </Link>
                 </Button>
                 <Button asChild className="w-full">
-                  <Link href="/cohorts" onClick={() => setMobileMenuOpen(false)}>
-                    View Cohorts
+                  <Link href="/cohorts/enterprise-copilot" onClick={() => setMobileMenuOpen(false)}>
+                    View program
                   </Link>
                 </Button>
               </div>

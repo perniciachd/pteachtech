@@ -16,15 +16,15 @@ const contactMethods = [
     icon: Mail,
     title: 'For cohorts',
     description: 'Curriculum, applications, cohort questions',
-    value: 'manan@pteachtech.in',
-    href: 'mailto:manan@pteachtech.in',
+    value: 'perniciachd@gmail.com',
+    href: 'mailto:perniciachd@gmail.com',
   },
   {
     icon: Mail,
     title: 'For enterprise',
     description: 'Custom team training · partnerships · NA workshops',
-    value: 'abhir@pernicia.in',
-    href: 'mailto:abhir@pernicia.in',
+    value: 'perniciachd@gmail.com',
+    href: 'mailto:perniciachd@gmail.com',
   },
   {
     icon: MapPin,
@@ -122,7 +122,7 @@ export default function ContactPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Calendar className="h-5 w-5" />
-                  Talk to our Instructor (15 min)
+                  Book a scoping call
                 </CardTitle>
                 <CardDescription>
                   Book a 15-minute discovery call. We&apos;ll discuss cohort fit, your background, and answer any questions.
@@ -159,8 +159,8 @@ export default function ContactPage() {
                 <CardTitle>Or send a message</CardTitle>
                 <CardDescription>
                   We respond within 24 hours on weekdays. For enterprise / partnership topics, email{' '}
-                  <a href="mailto:abhir@pernicia.in" className="font-medium text-foreground hover:text-primary">
-                    abhir@pernicia.in
+                  <a href="mailto:perniciachd@gmail.com" className="font-medium text-foreground hover:text-primary">
+                    perniciachd@gmail.com
                   </a>{' '}
                   directly.
                 </CardDescription>

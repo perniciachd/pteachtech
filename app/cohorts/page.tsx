@@ -87,7 +87,7 @@ function CohortOverviewCard({ cohort }: { cohort: Cohort }) {
                 <p className="mt-1 text-xs text-muted-foreground">{indiaTier.note}</p>
               )}
               <p className="mt-2 text-xs text-muted-foreground">
-                Based outside India? <Link href="/contact" className="text-primary hover:underline">Talk to our Instructor</Link> for pricing.
+                Based outside India? <Link href="/contact" className="text-primary hover:underline">talk to us</Link> for pricing.
               </p>
             </>
           ) : (
@@ -95,7 +95,7 @@ function CohortOverviewCard({ cohort }: { cohort: Cohort }) {
               <p className="text-xs text-muted-foreground uppercase tracking-wider">Pricing</p>
               <p className="mt-1 text-lg font-semibold text-foreground">Competitive · tailored to your team</p>
               <p className="mt-2 text-xs text-muted-foreground">
-                Private team program, onsite or virtual. <Link href="/contact" className="text-primary hover:underline">Talk to us</Link> to scope it.
+                Private team program, onsite or virtual. <Link href="/contact" className="text-primary hover:underline">talk to us</Link> to scope it.
               </p>
             </>
           )}
@@ -111,7 +111,7 @@ function CohortOverviewCard({ cohort }: { cohort: Cohort }) {
           </Button>
           {cohort.b2b ? (
             <Button asChild variant="outline">
-              <Link href="/contact">Talk to us</Link>
+              <Link href="/contact">Book a scoping call</Link>
             </Button>
           ) : (
             isOpen && (
@@ -147,7 +147,7 @@ export default function CohortsPage() {
                 <Link href="/compare">Compare cohorts</Link>
               </Button>
               <Button asChild variant="ghost">
-                <Link href="/contact">Talk to our Instructor (15 min)</Link>
+                <Link href="/contact">Book a scoping call</Link>
               </Button>
             </div>
           </div>
@@ -253,7 +253,7 @@ export default function CohortsPage() {
               </p>
               <div className="mt-6 flex justify-center gap-3 flex-wrap">
                 <Button asChild>
-                  <Link href="/contact">Talk to our Instructor first</Link>
+                  <Link href="/contact">Book a scoping call</Link>
                 </Button>
                 <Button asChild variant="outline">
                   <Link href="/compare">Compare cohorts</Link>

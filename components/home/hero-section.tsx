@@ -59,13 +59,13 @@ export function HeroSection() {
             </div>
             <div className="hidden h-12 w-px bg-border sm:block" />
             <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold text-foreground">1 deployed</span>
-              <span className="text-sm text-muted-foreground">Multi-agent enterprise capstone</span>
+              <span className="text-3xl font-bold text-foreground">10+</span>
+              <span className="text-sm text-muted-foreground">Multi-agent capstones deployed</span>
             </div>
             <div className="hidden h-12 w-px bg-border sm:block" />
             <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold text-foreground">US &amp; EU</span>
-              <span className="text-sm text-muted-foreground">Enterprises served</span>
+              <span className="text-3xl font-bold text-foreground">Global</span>
+              <span className="text-sm text-muted-foreground">Enterprises served worldwide</span>
             </div>
           </div>
         </div>

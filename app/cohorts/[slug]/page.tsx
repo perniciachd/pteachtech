@@ -243,7 +243,7 @@ function PricingSection({ cohort }: { cohort: Cohort }) {
               : "We deliver to learners across the Middle East, Europe, and North America. Pricing depends on region and format — book a 15-minute call with our Instructor and we'll walk you through the options."}
           </p>
           <Button asChild size="sm" className="mt-4">
-            <Link href="/contact">Talk to our Instructor (15 min)</Link>
+            <Link href="/contact">Book a scoping call</Link>
           </Button>
         </div>
 
@@ -285,6 +285,32 @@ function FAQSection({ cohort }: { cohort: Cohort }) {
 }
 
 function ApplySection({ cohort }: { cohort: Cohort }) {
+  if (cohort.b2b) {
+    return (
+      <section id="apply" className="scroll-mt-20 bg-primary py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl text-balance">
+              Ready to bring this to your team?
+            </h2>
+            <p className="mt-4 text-lg text-primary-foreground/80 text-pretty">
+              {cohort.name} is delivered privately — onsite or virtual — and tailored to your stack and
+              goals. Book a scoping call and we&apos;ll design the program for your team.
+            </p>
+            <div className="mt-10 flex justify-center">
+              <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2">
+                <Link href="/contact">
+                  Book a scoping call
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   return (
     <section id="apply" className="scroll-mt-20 bg-primary py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -305,8 +331,8 @@ function ApplySection({ cohort }: { cohort: Cohort }) {
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
-              <Link href="/contact">Talk to our Instructor (15 min)</Link>
+            <Button asChild variant="outline" size="lg" className="bg-transparent border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+              <Link href="/contact">Book a scoping call</Link>
             </Button>
           </div>
         </div>
