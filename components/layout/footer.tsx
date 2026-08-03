@@ -42,8 +42,8 @@ export function Footer() {
               <span className="text-xl font-bold text-foreground">pTeachTech</span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-              Cohort-based AI and AWS Cloud training for working professionals.
-              From notebooks to production.
+              Private, hands-on enterprise AI training — Multi-Agent Copilot &amp; Enterprise
+              AI Architecture, delivered to your team by practitioners.
             </p>
             <div className="mt-6 flex gap-3">
               {socialLinks.map((item) => (
