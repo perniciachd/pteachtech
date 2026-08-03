@@ -155,7 +155,7 @@ export async function POST(request: NextRequest) {
     const safeGithub = escapeHtml(githubAssessmentUrl ?? 'Not provided')
 
     await sendEmail({
-      to: ['perniciachd@gmail.com', 'perniciachd@gmail.com'],
+      to: ['abhir@pernicia.in', 'abhir@pernicia.in'],
       subject: `Application: ${cohort.name} — ${applicantName} (awaiting payment)`,
       replyTo: applicantEmail,
       html: `

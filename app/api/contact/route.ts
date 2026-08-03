@@ -74,8 +74,8 @@ export async function POST(request: NextRequest) {
 
     // Notification to internal team
     const internalRecipients = [
-      'perniciachd@gmail.com', // cohort questions go here primarily
-      'perniciachd@gmail.com',   // enterprise / partnerships
+      'abhir@pernicia.in', // cohort questions go here primarily
+      'abhir@pernicia.in',   // enterprise / partnerships
     ]
 
     const safeName = escapeHtml(name)

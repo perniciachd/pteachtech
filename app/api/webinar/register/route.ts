@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
 
     // Notify internal team
     await sendEmail({
-      to: 'perniciachd@gmail.com',
+      to: 'abhir@pernicia.in',
       subject: `Webinar signup — ${email}`,
       html: `
         <h2 style="font-family:Manrope,system-ui,sans-serif;color:#1B2D6B">
