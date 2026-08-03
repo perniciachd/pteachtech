@@ -143,10 +143,10 @@ export default function AboutPage() {
                 </p>
                 <p className="mt-3 text-sm text-muted-foreground">
                   <a
-                    href="mailto:perniciachd@gmail.com"
+                    href="mailto:abhir@pernicia.in"
                     className="font-medium text-foreground hover:text-primary"
                   >
-                    perniciachd@gmail.com
+                    abhir@pernicia.in
                   </a>
                 </p>
               </CardContent>
@@ -162,10 +162,10 @@ export default function AboutPage() {
                 </p>
                 <p className="mt-3 text-sm text-muted-foreground">
                   <a
-                    href="mailto:perniciachd@gmail.com"
+                    href="mailto:abhir@pernicia.in"
                     className="font-medium text-foreground hover:text-primary"
                   >
-                    perniciachd@gmail.com
+                    abhir@pernicia.in
                   </a>
                 </p>
               </CardContent>

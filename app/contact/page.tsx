@@ -16,15 +16,15 @@ const contactMethods = [
     icon: Mail,
     title: 'For cohorts',
     description: 'Curriculum, applications, cohort questions',
-    value: 'perniciachd@gmail.com',
-    href: 'mailto:perniciachd@gmail.com',
+    value: 'abhir@pernicia.in',
+    href: 'mailto:abhir@pernicia.in',
   },
   {
     icon: Mail,
     title: 'For enterprise',
     description: 'Custom team training · partnerships · NA workshops',
-    value: 'perniciachd@gmail.com',
-    href: 'mailto:perniciachd@gmail.com',
+    value: 'abhir@pernicia.in',
+    href: 'mailto:abhir@pernicia.in',
   },
   {
     icon: MapPin,
@@ -159,8 +159,8 @@ export default function ContactPage() {
                 <CardTitle>Or send a message</CardTitle>
                 <CardDescription>
                   We respond within 24 hours on weekdays. For enterprise / partnership topics, email{' '}
-                  <a href="mailto:perniciachd@gmail.com" className="font-medium text-foreground hover:text-primary">
-                    perniciachd@gmail.com
+                  <a href="mailto:abhir@pernicia.in" className="font-medium text-foreground hover:text-primary">
+                    abhir@pernicia.in
                   </a>{' '}
                   directly.
                 </CardDescription>
