@@ -94,9 +94,42 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const orgSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'pTeachTech',
+    alternateName: 'pTeachTech by Pernicia',
+    url: 'https://pteachtech.in',
+    logo: 'https://pteachtech.in/og-image.png',
+    description:
+      'Private, hands-on enterprise AI training. Multi-Agent Copilot & Enterprise AI Architecture on Microsoft Copilot Studio & Azure, delivered to US & European teams by 15+ year practitioners.',
+    parentOrganization: { '@type': 'Organization', name: 'Pernicia', address: { '@type': 'PostalAddress', addressCountry: 'CA' } },
+    knowsAbout: [
+      'Enterprise AI training',
+      'Multi-Agent Copilot',
+      'Microsoft Copilot Studio',
+      'Agentic AI',
+      'Enterprise AI architecture',
+      'Azure AI',
+    ],
+    sameAs: [
+      'https://www.linkedin.com/company/68563633/',
+      'https://www.instagram.com/pteachtech/',
+    ],
+  }
+  const siteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'pTeachTech',
+    url: 'https://pteachtech.in',
+  }
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable} bg-background`}>
       <body className="font-sans antialiased min-h-screen">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([orgSchema, siteSchema]) }}
+        />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
