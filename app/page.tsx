@@ -2,6 +2,7 @@ import { MarketingLayout } from '@/components/layout'
 import {
   HeroSection,
   CohortCardsSection,
+  DeliveredForSection,
   FourPillarsSection,
   InstructorsSection,
   WebinarCTASection,
@@ -12,6 +13,7 @@ export default function HomePage() {
     <MarketingLayout showCohortBar={true}>
       <HeroSection />
       <CohortCardsSection />
+      <DeliveredForSection />
       <FourPillarsSection />
       <InstructorsSection />
       <WebinarCTASection />
