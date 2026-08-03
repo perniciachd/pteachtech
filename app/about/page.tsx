@@ -143,10 +143,10 @@ export default function AboutPage() {
                 </p>
                 <p className="mt-3 text-sm text-muted-foreground">
                   <a
-                    href="mailto:abhir@pernicia.in"
+                    href="mailto:perniciachd@gmail.com"
                     className="font-medium text-foreground hover:text-primary"
                   >
-                    abhir@pernicia.in
+                    perniciachd@gmail.com
                   </a>
                 </p>
               </CardContent>
@@ -162,10 +162,10 @@ export default function AboutPage() {
                 </p>
                 <p className="mt-3 text-sm text-muted-foreground">
                   <a
-                    href="mailto:manan@pteachtech.in"
+                    href="mailto:perniciachd@gmail.com"
                     className="font-medium text-foreground hover:text-primary"
                   >
-                    manan@pteachtech.in
+                    perniciachd@gmail.com
                   </a>
                 </p>
               </CardContent>
@@ -209,7 +209,7 @@ export default function AboutPage() {
             <div className="mt-10">
               <Button asChild size="lg" className="gap-2">
                 <Link href="/contact">
-                  Talk to us
+                  Book a scoping call
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>

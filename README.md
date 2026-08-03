@@ -89,7 +89,7 @@ Cohort metadata (names, dates, pricing, curriculum, FAQs) is the source of truth
 
 ## Contributing
 
-Internal project. For curriculum questions: `manan@pteachtech.in`. For corporate / partnership: `abhir@pernicia.in`.
+Internal project. For curriculum questions: `perniciachd@gmail.com`. For corporate / partnership: `perniciachd@gmail.com`.
 
 ---
 
