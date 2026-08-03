@@ -17,26 +17,25 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'pTeachTech | From notebooks to production',
+    default: 'pTeachTech | Enterprise AI Training & Multi-Agent Copilot Cohorts',
     template: '%s | pTeachTech',
   },
   description:
-    'Cohort-based AI and AWS Cloud engineering training for working professionals. Six-week live programs · BFSI vertical depth · India · Middle East · Toronto · SF · Dubai.',
+    'Private, hands-on enterprise AI training by Pernicia (Canada). Multi-Agent Copilot & Enterprise AI Architecture on Microsoft Copilot Studio & Azure — delivered to US & European teams by 15+ year practitioners who build these systems in production.',
   keywords: [
-    'AI Engineering',
-    'AWS Cloud',
-    'Cloud-DevSecOps',
-    'RAG',
-    'MLOps',
-    'LLM Application Development',
-    'Production AI',
-    'BFSI Compliance',
-    'Cohort-Based Learning',
-    'Working Professionals',
-    'RBI Compliance',
-    'DPDP',
-    'Engineering Training',
-    'AI Bootcamp India',
+    'Enterprise AI training',
+    'AI training cohorts',
+    'Multi-Agent Copilot',
+    'Microsoft Copilot Studio training',
+    'Agentic AI training',
+    'Enterprise AI architecture',
+    'Copilot Studio',
+    'Power Platform training',
+    'Azure AI training',
+    'Corporate AI training',
+    'AI upskilling for teams',
+    'Private AI cohorts',
+    'AI training for enterprises',
   ],
   authors: [{ name: 'pTeachTech', url: 'https://pteachtech.in' }],
   creator: 'pTeachTech · Pernicia (Canada)',
@@ -47,12 +46,12 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'en_IN',
+    locale: 'en_US',
     url: 'https://pteachtech.in',
     siteName: 'pTeachTech',
-    title: 'pTeachTech | From notebooks to production',
+    title: 'pTeachTech | Enterprise AI Training & Multi-Agent Copilot Cohorts',
     description:
-      'Cohort-based AI and AWS Cloud training for working professionals. Live, hands-on, production-grade.',
+      'Private, hands-on enterprise AI training. Multi-Agent Copilot & Enterprise AI Architecture on Copilot Studio & Azure, delivered to US & European teams by 15+ year practitioners.',
     images: [
       {
         url: '/og-image.png',
@@ -64,9 +63,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'pTeachTech | From notebooks to production',
+    title: 'pTeachTech | Enterprise AI Training & Multi-Agent Copilot Cohorts',
     description:
-      'Cohort-based AI and AWS Cloud training for working professionals. Live, hands-on, production-grade.',
+      'Private, hands-on enterprise AI training. Multi-Agent Copilot & Enterprise AI Architecture, delivered to US & European teams by 15+ year practitioners.',
     images: ['/og-image.png'],
   },
   robots: {

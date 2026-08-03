@@ -19,34 +19,34 @@ export function HeroSection() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
             </span>
-            Cohort 1 starts July 20 · 20 founding seats open
+            New · Multi-Agent Copilot &amp; Enterprise AI Architecture
           </div>
 
           {/* Headline */}
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl text-balance">
-            From notebooks to <span className="text-primary">production.</span>
+            Enterprise AI, built by <span className="text-primary">practitioners.</span>
           </h1>
 
           {/* Subheadline */}
           <p className="mt-6 text-lg text-muted-foreground sm:text-xl leading-relaxed text-pretty">
-            Cohort-based AI and AWS Cloud training for working professionals.
-            Live, hands-on, production-grade.
+            Private, hands-on programs that take your team from single Copilots to governed,
+            multi-agent systems on Microsoft Copilot Studio &amp; Azure.
             <br className="hidden sm:block" />
-            India · Middle East · Toronto · SF · Dubai.
+            Delivered by 15+ year practitioners who ship this for US &amp; European enterprises.
           </p>
 
           {/* CTAs */}
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button asChild size="lg" className="gap-2 text-base">
-              <Link href="/cohorts">
-                View Cohorts
+              <Link href="/cohorts/enterprise-copilot">
+                View the program
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="gap-2 text-base">
               <Link href="/contact">
                 <Calendar className="h-4 w-4" />
-                Talk to our Instructor (15 min)
+                Book a scoping call
               </Link>
             </Button>
           </div>
@@ -54,18 +54,18 @@ export function HeroSection() {
           {/* Credibility row — factual claims about the offering, not fabricated outcomes */}
           <div className="mt-16 flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-12">
             <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold text-foreground">60 hrs</span>
-              <span className="text-sm text-muted-foreground">Live with the instructor</span>
+              <span className="text-3xl font-bold text-foreground">15+ yrs</span>
+              <span className="text-sm text-muted-foreground">Practitioner-led delivery</span>
             </div>
             <div className="hidden h-12 w-px bg-border sm:block" />
             <div className="flex flex-col items-center">
               <span className="text-3xl font-bold text-foreground">1 deployed</span>
-              <span className="text-sm text-muted-foreground">Production system as capstone</span>
+              <span className="text-sm text-muted-foreground">Multi-agent enterprise capstone</span>
             </div>
             <div className="hidden h-12 w-px bg-border sm:block" />
             <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold text-foreground">2 hrs/day</span>
-              <span className="text-sm text-muted-foreground">Evening cadence, IST</span>
+              <span className="text-3xl font-bold text-foreground">US &amp; EU</span>
+              <span className="text-sm text-muted-foreground">Enterprises served</span>
             </div>
           </div>
         </div>

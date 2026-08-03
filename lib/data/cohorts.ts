@@ -48,6 +48,8 @@ export interface Cohort {
   curriculumUnitLabel?: string
   /** B2B = private team/enterprise program (no public per-seat sale). */
   b2b?: boolean
+  /** Hidden from all public listings & routes (kept in data for future re-enable). */
+  hidden?: boolean
   highlights: string[]
   curriculum: CurriculumWeek[]
   pricing: PricingTier[]
@@ -57,7 +59,7 @@ export interface Cohort {
   prerequisites: string[]
 }
 
-export const cohorts: Cohort[] = [
+const allCohorts: Cohort[] = [
   // ============================================================
   // FLAGSHIP (B2B): Multi-Agent Copilot & Enterprise AI Architecture
   // Private, team-based enterprise program. No public per-seat price.
@@ -211,6 +213,7 @@ export const cohorts: Cohort[] = [
   {
     id: 'ai-engineering',
     slug: 'ai-engineering',
+    hidden: true,
     name: 'AI Engineering',
     tagline: 'Applied AI for Builders · From notebooks to production',
     description:
@@ -368,6 +371,7 @@ export const cohorts: Cohort[] = [
   {
     id: 'aws-cloud',
     slug: 'aws-cloud',
+    hidden: true,
     name: 'AWS Cloud-DevSecOps',
     tagline: 'Build cloud you can defend',
     description:
@@ -503,6 +507,7 @@ export const cohorts: Cohort[] = [
   {
     id: 'ai-deployment',
     slug: 'ai-deployment',
+    hidden: true,
     name: 'AI Deployment on AWS + Azure',
     tagline: 'From cohort to production. From training to placement.',
     description:
@@ -618,6 +623,9 @@ export const cohorts: Cohort[] = [
     ],
   },
 ]
+
+/** Public, visible cohorts. Hidden ones stay in `allCohorts` for future re-enable. */
+export const cohorts: Cohort[] = allCohorts.filter((c) => !c.hidden)
 
 export function getCohortBySlug(slug: string): Cohort | undefined {
   return cohorts.find((c) => c.slug === slug)

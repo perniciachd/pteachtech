@@ -3,21 +3,17 @@ import { Linkedin, Instagram, Mail } from 'lucide-react'
 
 const footerLinks = {
   cohorts: [
-    { name: 'AI Engineering', href: '/cohorts/ai-engineering' },
-    { name: 'AWS Cloud-DevSecOps', href: '/cohorts/aws-cloud' },
-    { name: 'AI Deployment (Combined)', href: '/cohorts/ai-deployment' },
-    { name: 'Compare cohorts', href: '/compare' },
+    { name: 'Multi-Agent Copilot & Enterprise AI', href: '/cohorts/enterprise-copilot' },
+    { name: 'All programs', href: '/cohorts' },
   ],
   resources: [
-    { name: 'NA Workshops', href: '/workshops' },
-    { name: 'Resume Lens', href: '/lens' },
+    { name: 'Workshops', href: '/workshops' },
     { name: 'Webinars', href: '/webinars' },
     { name: 'Blog', href: '/blog' },
   ],
   company: [
     { name: 'About', href: '/about' },
-    { name: 'Alumni', href: '/alumni' },
-    { name: 'Talk to our Instructor', href: '/contact' },
+    { name: 'Talk to us', href: '/contact' },
   ],
   legal: [
     { name: 'Privacy Policy', href: '/privacy' },

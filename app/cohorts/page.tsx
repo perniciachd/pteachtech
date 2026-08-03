@@ -7,9 +7,9 @@ import { Badge } from '@/components/ui/badge'
 import { cohorts, type Cohort } from '@/lib/data/cohorts'
 
 export const metadata = {
-  title: 'Cohorts',
+  title: 'Enterprise AI Programs',
   description:
-    'Three live cohorts: AI Engineering, AWS Cloud-DevSecOps, and AI Deployment on AWS+Azure. 2 hrs/day evenings IST. Founding-cohort pricing for the first 20 seats.',
+    'Multi-Agent Copilot & Enterprise AI Architecture — a private, hands-on program delivered to your team on Microsoft Copilot Studio & Azure by 15+ year practitioners. Competitive, tailored pricing.',
   alternates: { canonical: 'https://pteachtech.in/cohorts' },
 }
 
@@ -29,7 +29,7 @@ function CohortOverviewCard({ cohort }: { cohort: Cohort }) {
       {/* Status indicator */}
       <div className="absolute right-4 top-4">
         <Badge variant={isOpen ? 'default' : 'secondary'}>
-          {isOpen ? 'Founding seats open' : 'Coming soon'}
+          {cohort.b2b ? 'Private program' : isOpen ? 'Founding seats open' : 'Coming soon'}
         </Badge>
       </div>
 
@@ -55,7 +55,9 @@ function CohortOverviewCard({ cohort }: { cohort: Cohort }) {
           <div className="flex items-center gap-2 text-muted-foreground">
             <Users className="h-4 w-4" />
             <span>
-              {isOpen
+              {cohort.b2b
+                ? 'Private team program'
+                : isOpen
                 ? `${cohort.availableSeats}/${cohort.totalSeats} founding seats`
                 : `Capped at ${cohort.totalSeats}`}
             </span>
@@ -107,10 +109,16 @@ function CohortOverviewCard({ cohort }: { cohort: Cohort }) {
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
-          {isOpen && (
+          {cohort.b2b ? (
             <Button asChild variant="outline">
-              <Link href={`/apply?cohort=${cohort.slug}`}>Reserve seat</Link>
+              <Link href="/contact">Talk to us</Link>
             </Button>
+          ) : (
+            isOpen && (
+              <Button asChild variant="outline">
+                <Link href={`/apply?cohort=${cohort.slug}`}>Reserve seat</Link>
+              </Button>
+            )
           )}
         </div>
       </CardContent>

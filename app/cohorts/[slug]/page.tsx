@@ -68,20 +68,29 @@ function CohortHero({ cohort }: { cohort: Cohort }) {
                 <Clock className="h-5 w-5 text-muted-foreground" />
                 <span className="text-foreground font-medium">{cohort.duration}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Calendar className="h-5 w-5 text-muted-foreground" />
-                <span className="text-foreground font-medium">Starts {cohort.startDate}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Users className="h-5 w-5 text-muted-foreground" />
-                <span className="text-foreground font-medium">{cohort.availableSeats} of {cohort.totalSeats} seats left</span>
-              </div>
+              {cohort.b2b ? (
+                <div className="flex items-center gap-2">
+                  <Users className="h-5 w-5 text-muted-foreground" />
+                  <span className="text-foreground font-medium">Private team program · onsite or virtual</span>
+                </div>
+              ) : (
+                <>
+                  <div className="flex items-center gap-2">
+                    <Calendar className="h-5 w-5 text-muted-foreground" />
+                    <span className="text-foreground font-medium">Starts {cohort.startDate}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Users className="h-5 w-5 text-muted-foreground" />
+                    <span className="text-foreground font-medium">{cohort.availableSeats} of {cohort.totalSeats} seats left</span>
+                  </div>
+                </>
+              )}
             </div>
-            
+
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Button asChild size="lg" className="gap-2">
-                <Link href={`/apply?cohort=${cohort.slug}`}>
-                  Reserve a founding seat
+                <Link href={cohort.b2b ? '/contact' : `/apply?cohort=${cohort.slug}`}>
+                  {cohort.b2b ? 'Book a scoping call' : 'Reserve a founding seat'}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
