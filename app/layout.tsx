@@ -39,8 +39,8 @@ export const metadata: Metadata = {
     'AI Bootcamp India',
   ],
   authors: [{ name: 'pTeachTech', url: 'https://pteachtech.in' }],
-  creator: 'pTeachTech (by Pernicia)',
-  publisher: 'Pernicia Pvt Ltd',
+  creator: 'pTeachTech · Pernicia (Canada)',
+  publisher: 'Pernicia (Canada)',
   metadataBase: new URL('https://pteachtech.in'),
   alternates: {
     canonical: 'https://pteachtech.in',
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     },
   },
   other: {
-    'company:parent': 'Pernicia (Pernicia Pvt Ltd · India · Pernicia Corp · Canada)',
+    'company:parent': 'Pernicia (Canada)',
   },
 }
 

@@ -145,7 +145,7 @@ export function Footer() {
             >
               Pernicia
             </a>{' '}
-            · Pernicia Pvt Ltd (India) · Pernicia Corp (Canada)
+            · Pernicia (Canada)
           </p>
         </div>
       </div>

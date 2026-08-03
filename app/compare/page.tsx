@@ -358,10 +358,10 @@ function InternalCohortCompare() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
-            Picking between our three cohorts
+            Picking the right program
           </h2>
           <p className="mt-4 text-lg text-muted-foreground text-pretty">
-            All three are taught by the same lead trainer. Pick the one matching your career direction.
+            All are practitioner-led. The enterprise program is delivered privately to your team; the applied cohorts suit individuals and small teams.
           </p>
         </div>
 
@@ -407,11 +407,15 @@ function InternalCohortCompare() {
                   const indiaTier = cohort.pricing.find((p) => p.region.startsWith('India'))
                   return (
                     <td key={cohort.id} className="p-4 text-center">
-                      <span className="text-lg font-bold text-foreground">
-                        ₹{indiaTier?.price.toLocaleString()}
-                      </span>
-                      {indiaTier?.note && (
-                        <p className="mt-1 text-xs text-muted-foreground">{indiaTier.note}</p>
+                      {indiaTier ? (
+                        <>
+                          <span className="text-lg font-bold text-foreground">₹{indiaTier.price.toLocaleString()}</span>
+                          {indiaTier.note && (
+                            <p className="mt-1 text-xs text-muted-foreground">{indiaTier.note}</p>
+                          )}
+                        </>
+                      ) : (
+                        <span className="text-sm font-medium text-muted-foreground">Competitive — <Link href="/contact" className="text-primary hover:underline">enquire</Link></span>
                       )}
                     </td>
                   )
@@ -483,9 +487,9 @@ function InternalCohortCompare() {
                       <p className="font-medium text-foreground">{cohort.startDate}</p>
                     </div>
                     <div className="col-span-2">
-                      <span className="text-muted-foreground">India pricing</span>
+                      <span className="text-muted-foreground">{indiaTier ? 'India pricing' : 'Pricing'}</span>
                       <p className="font-medium text-foreground">
-                        ₹{indiaTier?.price.toLocaleString()}{indiaTier?.note ? ` · ${indiaTier.note}` : ''}
+                        {indiaTier ? `₹${indiaTier.price.toLocaleString()}${indiaTier.note ? ` · ${indiaTier.note}` : ''}` : 'Competitive — enquire'}
                       </p>
                     </div>
                   </div>

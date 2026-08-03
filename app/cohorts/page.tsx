@@ -72,21 +72,31 @@ function CohortOverviewCard({ cohort }: { cohort: Cohort }) {
           ))}
         </ul>
 
-        {/* Pricing preview — India only on the public site */}
+        {/* Pricing preview — India only on the public site; B2B shows "competitive" */}
         <div className="rounded-lg bg-secondary/50 p-4">
-          <p className="text-xs text-muted-foreground uppercase tracking-wider">India pricing</p>
-          <p className="mt-1 text-2xl font-bold text-foreground">
-            ₹{indiaTier?.price.toLocaleString()}
-            <span className="ml-1 text-sm font-normal text-muted-foreground">
-              {indiaTier?.currency}
-            </span>
-          </p>
-          {indiaTier?.note && (
-            <p className="mt-1 text-xs text-muted-foreground">{indiaTier.note}</p>
+          {indiaTier ? (
+            <>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">India pricing</p>
+              <p className="mt-1 text-2xl font-bold text-foreground">
+                ₹{indiaTier.price.toLocaleString()}
+                <span className="ml-1 text-sm font-normal text-muted-foreground">{indiaTier.currency}</span>
+              </p>
+              {indiaTier.note && (
+                <p className="mt-1 text-xs text-muted-foreground">{indiaTier.note}</p>
+              )}
+              <p className="mt-2 text-xs text-muted-foreground">
+                Based outside India? <Link href="/contact" className="text-primary hover:underline">Talk to our Instructor</Link> for pricing.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">Pricing</p>
+              <p className="mt-1 text-lg font-semibold text-foreground">Competitive · tailored to your team</p>
+              <p className="mt-2 text-xs text-muted-foreground">
+                Private team program, onsite or virtual. <Link href="/contact" className="text-primary hover:underline">Talk to us</Link> to scope it.
+              </p>
+            </>
           )}
-          <p className="mt-2 text-xs text-muted-foreground">
-            Based outside India? <Link href="/contact" className="text-primary hover:underline">Talk to our Instructor</Link> for pricing.
-          </p>
         </div>
 
         {/* CTA */}
@@ -119,11 +129,10 @@ export default function CohortsPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl text-balance">
-              Three cohorts. Pick your path.
+              Training programs, built by practitioners.
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed text-pretty">
-              Live, instructor-led programs at 2 hrs/day evening cadence (7–9 PM IST).
-              Working-pro friendly. BFSI vertical depth. Founding-cohort pricing for the first 20 seats per batch.
+              Live, instructor-led and hands-on. Our flagship enterprise program — Multi-Agent Copilot &amp; Enterprise AI Architecture — is delivered privately to your team, onsite or virtual, by 15+ year practitioners who build these systems for US &amp; European enterprises.
             </p>
             <div className="mt-8 flex justify-center gap-4 flex-wrap">
               <Button asChild variant="outline">
