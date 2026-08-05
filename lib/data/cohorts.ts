@@ -208,6 +208,117 @@ const allCohorts: Cohort[] = [
   },
 
   // ============================================================
+  // FLAGSHIP (B2B): Full-Stack Java — Spring, React, Kubernetes & Cloud
+  // Instructor-led "Java Black Belt" upskilling program.
+  // ============================================================
+  {
+    id: 'fullstack-java',
+    slug: 'fullstack-java',
+    name: 'Full-Stack Java: Spring, React, Kubernetes & Cloud',
+    tagline: 'Enterprise Java — from Spring Boot to Kubernetes & AWS',
+    description:
+      'A 60-hour, instructor-led "Java Black Belt" program that upskills engineers to full-stack, cloud-native Java — advanced Spring & Spring Boot, secure API design (OAuth2/OIDC/JWT/OWASP), microservices & Spring Cloud, Spring AI, React front-ends, Docker, Kubernetes, and AWS deployment — with an internal certification-readiness track. Delivered privately to your team.',
+    icon: 'cloud',
+    color: 'accent',
+    duration: '4 weeks · 60 hours · 3 hrs/day × 20 days',
+    startDate: 'Rolling · private team cohorts',
+    totalSeats: 20,
+    availableSeats: 20,
+    status: 'open',
+    curriculumUnitLabel: 'Week',
+    b2b: true,
+    highlights: [
+      'Full-stack, cloud-native Java — Spring Boot through Kubernetes & AWS',
+      'Secure API design — OAuth2, OIDC, JWT and OWASP Top 10 awareness',
+      'Microservices & Spring Cloud, plus Spring AI integration',
+      'React front-ends integrated with secured backend APIs',
+      'Docker, Kubernetes & AWS deployment for Java services',
+      'Internal "Java Black Belt" certification-readiness track',
+    ],
+    curriculum: [
+      { week: 1, title: 'Week 1 · Advanced Spring, AOP, Hibernate & Security Basics', topics: [
+        'Modern Java enterprise architecture: monolith vs distributed, the Spring ecosystem',
+        'Advanced Spring Core: bean lifecycle, DI patterns, scopes, profiles, conditional beans, config',
+        'Spring Boot advanced: auto-configuration, starters, actuator, exception handling, REST API design',
+        'Spring AOP: join points, pointcuts, advice, proxies — logging, auditing, metrics, security',
+        'Hibernate & JPA: entity lifecycle, relationships, fetching strategies, transactions, locking',
+      ] },
+      { week: 2, title: 'Week 2 · Spring Security, OAuth2, OWASP, Microservices & Spring Cloud', topics: [
+        'Spring Security core: authN vs authZ, filter chain, RBAC, method-level security',
+        'OAuth2, OIDC, JWT & API security: authorization/resource servers, claims, scopes, tokens',
+        'OWASP Top 10 & secure coding for Java: access control, injection, crypto & auth failures',
+        'Microservices architecture: decomposition, bounded contexts, API gateway, discovery, saga',
+        'Spring Cloud: Gateway, Config Server, discovery, resilience (retry, circuit breaker, timeout)',
+      ] },
+      { week: 3, title: 'Week 3 · Spring AI, Observability, React & Docker', topics: [
+        'Spring AI: ChatClient, prompts, embeddings, vector stores, RAG, tool calling, AI observability',
+        'Observability & production readiness: logging, metrics, tracing, health checks, correlation IDs',
+        'React for Java developers: components, props, state, hooks, routing, forms, API integration',
+        'React with secured backends: login flow, JWT from UI, role-based rendering, CORS, API clients',
+        'Docker fundamentals: images, Dockerfile, multi-stage builds, Compose, networking, volumes',
+      ] },
+      { week: 4, title: 'Week 4 · Kubernetes, AWS, Architecture & Certification', topics: [
+        'Kubernetes fundamentals: pods, deployments, services, namespaces, ConfigMaps, secrets',
+        'Kubernetes for Java microservices: ingress, probes, rolling updates, scaling, Spring Boot patterns',
+        'Essential AWS for Java: IAM, VPC, EC2, S3, RDS, ECR, ECS, EKS, Lambda, CloudWatch, Secrets Manager',
+        'End-to-end architecture: designing a secure, cloud-native Java application & deployment options',
+        'Certification readiness: recap, scenario discussion, MCQ assessment, architecture/design viva',
+      ] },
+    ],
+    pricing: [],
+    instructors: [
+      {
+        name: 'Manan Jindal',
+        title: 'Principal Trainer & Solution Architect · 15+ years',
+        company: 'pTeachTech · Pernicia (Canada)',
+        linkedin: 'https://linkedin.com/in/manan-jindal',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Who is this program for?',
+        answer:
+          'Java developers upskilling to full-stack, cloud-native engineering — and teams preparing for an internal "Java Black Belt" certification. Delivered privately to your team.',
+      },
+      {
+        question: 'What is the format?',
+        answer:
+          'Instructor-led conceptual training over 20 working days (3 hours/day, 60 hours) — concept explanations, instructor demos, architecture discussions, real-world scenarios, Q&A, and knowledge checks.',
+      },
+      {
+        question: 'What prerequisites are needed?',
+        answer:
+          'Working knowledge of core Java, basic SQL and REST concepts, and familiarity with Spring/Spring Boot basics. We tailor depth to your team.',
+      },
+      {
+        question: 'Does it include the internal certification?',
+        answer:
+          'The program is built as certification-readiness: knowledge-based evaluation, participation, quizzes, and an architecture/design viva. We align the assessment with your internal certification criteria.',
+      },
+      {
+        question: 'Can it be tailored to our stack?',
+        answer:
+          'Yes — the curriculum, depth, and emphasis (e.g. AWS vs another cloud, security focus, Spring AI) are tailored to your team and delivered onsite or virtual.',
+      },
+    ],
+    outcomes: [
+      'Design & build secure, cloud-native Java microservices with Spring Boot & Spring Cloud',
+      'Implement OAuth2 / OIDC / JWT security and OWASP-aware secure coding',
+      'Build React front-ends integrated with secured backend APIs',
+      'Containerize with Docker and deploy Java services on Kubernetes',
+      'Deploy Java applications on AWS (EKS/ECS/RDS and core services)',
+      'Reach internal "Java Black Belt" certification readiness',
+    ],
+    prerequisites: [
+      'For teams: Java developers upskilling to full-stack, cloud-native engineering',
+      'Working knowledge of core Java',
+      'Familiarity with Spring / Spring Boot basics (helpful)',
+      'Basic SQL and REST API concepts',
+      'Delivered privately to your team — onsite or virtual',
+    ],
+  },
+
+  // ============================================================
   // COHORT 1: AI Engineering
   // ============================================================
   {
