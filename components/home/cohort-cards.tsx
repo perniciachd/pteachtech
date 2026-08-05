@@ -20,7 +20,7 @@ export function CohortCard({ cohort }: CohortCardProps) {
   
   return (
     <Card className="group relative overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
       <CardHeader>
         <div className="flex items-start justify-between">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
