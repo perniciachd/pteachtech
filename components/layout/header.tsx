@@ -21,6 +21,7 @@ import {
 const navigation = {
   programs: [
     { name: 'Multi-Agent Copilot & Enterprise AI Architecture', href: '/cohorts/enterprise-copilot', description: 'Private enterprise program · Copilot Studio + Azure' },
+    { name: 'Full-Stack Java: Spring, React, Kubernetes & Cloud', href: '/cohorts/fullstack-java', description: 'Enterprise Java upskilling · Spring to Kubernetes & AWS' },
   ],
   main: [
     { name: 'About', href: '/about' },
