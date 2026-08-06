@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { RefreshCw, Star, ArrowLeft, ThumbsUp, AlertTriangle, Quote } from 'lucide-react'
+import { RefreshCw, Star, ArrowLeft, ThumbsUp, AlertTriangle, Quote, QrCode } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -21,8 +21,10 @@ type Row = {
   improve: string | null
   suggestions: string | null
   featured: boolean
+  session: { code: string; training_name: string } | null
   [k: string]: unknown
 }
+type SessionOption = { code: string; trainingName: string; count: number }
 type Summary = {
   count: number
   overall: number
@@ -31,10 +33,24 @@ type Summary = {
   npsCount: number
   featured: number
   trainings: string[]
+  sessions: SessionOption[]
 }
 type Resp = { rows: Row[]; summary: Summary; fetchedAt: string; error?: string }
 
 const barColor = (v: number) => (v >= 4.5 ? 'bg-emerald-500' : v >= 4 ? 'bg-blue-500' : v >= 3 ? 'bg-amber-500' : 'bg-red-500')
+
+const RATING_COLS = [
+  { key: 'met_expectations', label: 'Met my expectations' },
+  { key: 'relevance', label: 'Relevant to my role' },
+  { key: 'content_quality', label: 'Content clear & organized' },
+  { key: 'trainer_rating', label: 'Trainer knowledgeable' },
+  { key: 'queries_answered', label: 'Questions answered well' },
+  { key: 'overall', label: 'Overall rating' },
+] as const
+
+const nums = (rows: Row[], key: string) =>
+  rows.map((r) => r[key]).filter((n): n is number => typeof n === 'number')
+const mean = (v: number[]) => (v.length ? v.reduce((a, b) => a + b, 0) / v.length : 0)
 
 export default function FeedbackAdmin() {
   const [data, setData] = useState<Resp | null>(null)
@@ -54,6 +70,12 @@ export default function FeedbackAdmin() {
   }, [])
   useEffect(() => { load() }, [load])
 
+  // Deep link from the sessions manager: /admin/feedback?session=<code>
+  useEffect(() => {
+    const code = new URLSearchParams(window.location.search).get('session')
+    if (code) setFilter(`session:${code}`)
+  }, [])
+
   async function toggleFeature(id: string, featured: boolean) {
     setData((d) => (d ? { ...d, rows: d.rows.map((r) => (r.id === id ? { ...r, featured } : r)) } : d))
     await fetch('/api/admin/feedback', {
@@ -62,10 +84,39 @@ export default function FeedbackAdmin() {
     }).catch(() => {})
   }
 
-  const rows = useMemo(
-    () => (data?.rows ?? []).filter((r) => filter === 'all' || r.training_name === filter),
-    [data, filter],
-  )
+  // Filter values: 'all', 'session:<code>' (one QR / one delivery),
+  // or 'training:<name>' (every delivery of that training).
+  const rows = useMemo(() => {
+    const all = data?.rows ?? []
+    if (filter === 'all') return all
+    if (filter.startsWith('session:')) {
+      const code = filter.slice('session:'.length)
+      return all.filter((r) => r.session?.code === code)
+    }
+    if (filter.startsWith('training:')) {
+      const name = filter.slice('training:'.length)
+      return all.filter((r) => r.training_name === name)
+    }
+    return all
+  }, [data, filter])
+
+  // Recomputed from the filtered rows — the numbers always match the selection.
+  const stats = useMemo(() => {
+    const npsVals = nums(rows, 'nps')
+    const promoters = npsVals.filter((n) => n >= 9).length
+    const detractors = npsVals.filter((n) => n <= 6).length
+    return {
+      overall: Number(mean(nums(rows, 'overall')).toFixed(2)),
+      perQuestion: RATING_COLS.map((c) => ({
+        key: c.key,
+        label: c.label,
+        avg: Number(mean(nums(rows, c.key)).toFixed(2)),
+      })),
+      nps: npsVals.length ? Math.round(((promoters - detractors) / npsVals.length) * 100) : null,
+      npsCount: npsVals.length,
+    }
+  }, [rows])
+
   const goodThings = rows.filter((r) => r.liked_most?.trim())
   const concerns = rows.filter((r) => r.improve?.trim() || r.suggestions?.trim())
 
@@ -80,15 +131,30 @@ export default function FeedbackAdmin() {
             <h1 className="mt-1 text-2xl font-bold text-foreground">Training feedback</h1>
           </div>
           <div className="flex items-center gap-2">
-            {data && data.summary.trainings.length > 0 && (
+            {data && (data.summary.trainings.length > 0 || data.summary.sessions.length > 0) && (
               <select value={filter} onChange={(e) => setFilter(e.target.value)}
-                className="rounded-md border bg-background px-3 py-1.5 text-sm">
-                <option value="all">All trainings</option>
-                {data.summary.trainings.map((t) => <option key={t} value={t}>{t}</option>)}
+                className="max-w-[16rem] rounded-md border bg-background px-3 py-1.5 text-sm">
+                <option value="all">All feedback</option>
+                {data.summary.sessions.length > 0 && (
+                  <optgroup label="Sessions (one QR)">
+                    {data.summary.sessions.map((s) => (
+                      <option key={s.code} value={`session:${s.code}`}>
+                        {s.trainingName} · /f/{s.code} ({s.count})
+                      </option>
+                    ))}
+                  </optgroup>
+                )}
+                {data.summary.trainings.length > 0 && (
+                  <optgroup label="All deliveries of a training">
+                    {data.summary.trainings.map((t) => (
+                      <option key={t} value={`training:${t}`}>{t}</option>
+                    ))}
+                  </optgroup>
+                )}
               </select>
             )}
-            <Button variant="outline" size="sm" asChild>
-              <a href="/feedback/qr" target="_blank" rel="noreferrer">Show QR</a>
+            <Button variant="outline" size="sm" asChild className="gap-1">
+              <Link href="/admin/feedback/sessions"><QrCode className="h-4 w-4" /> Sessions &amp; QR</Link>
             </Button>
             <Button variant="outline" size="sm" onClick={load} className="gap-1">
               <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} /> Refresh
@@ -104,8 +170,8 @@ export default function FeedbackAdmin() {
             {/* KPIs */}
             <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
               <Kpi label="Responses" value={String(rows.length)} />
-              <Kpi label="Overall / 5" value={data.summary.overall ? data.summary.overall.toFixed(2) : '—'} />
-              <Kpi label={`NPS (${data.summary.npsCount})`} value={data.summary.nps == null ? '—' : String(data.summary.nps)} />
+              <Kpi label="Overall / 5" value={stats.overall ? stats.overall.toFixed(2) : '—'} />
+              <Kpi label={`NPS (${stats.npsCount})`} value={stats.nps == null ? '—' : String(stats.nps)} />
               <Kpi label="Featured (public)" value={String(rows.filter((r) => r.featured).length)} />
             </div>
 
@@ -113,7 +179,7 @@ export default function FeedbackAdmin() {
             <Card className="mt-6">
               <CardHeader><CardTitle className="text-base">Ratings by question</CardTitle></CardHeader>
               <CardContent className="space-y-2">
-                {data.summary.perQuestion.map((q) => (
+                {stats.perQuestion.map((q) => (
                   <div key={q.key} className="flex items-center gap-3">
                     <span className="w-52 shrink-0 text-right text-sm text-muted-foreground">{q.label}</span>
                     <div className="h-3 flex-1 overflow-hidden rounded bg-muted">
@@ -164,6 +230,9 @@ export default function FeedbackAdmin() {
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2">
                         <span className="font-medium text-foreground">{r.training_name}</span>
+                        {r.session?.code && (
+                          <Badge variant="outline" className="font-mono text-[10px]">/f/{r.session.code}</Badge>
+                        )}
                         {r.overall && (
                           <span className="inline-flex items-center gap-0.5 text-sm text-amber-600">
                             <Star className="h-3.5 w-3.5 fill-amber-500 text-amber-500" /> {r.overall}

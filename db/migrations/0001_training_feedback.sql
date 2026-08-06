@@ -1,5 +1,7 @@
--- Training feedback (anonymous). Run this once in the Supabase SQL editor.
--- All access is via the server-side service role; RLS denies anon by default.
+-- Training feedback (anonymous). Run this once against the Neon database
+-- (console.neon.tech → your project → SQL Editor).
+--
+-- All access is server-side only, through the app's DATABASE_URL connection.
 
 create table if not exists public.training_feedback (
   id               uuid primary key default gen_random_uuid(),
@@ -35,6 +37,3 @@ create table if not exists public.training_feedback (
 
 create index if not exists training_feedback_created_at_idx on public.training_feedback (created_at desc);
 create index if not exists training_feedback_featured_idx on public.training_feedback (featured) where featured = true;
-
--- Deny all anon access; the app reads/writes via the service role only.
-alter table public.training_feedback enable row level security;

@@ -11,6 +11,8 @@ export default function robots(): MetadataRoute.Robots {
         '/apply',
         '/auth/',
         '/feedback',
+        // Per-session feedback QR links
+        '/f/',
         // Retired / hidden B2C cohorts
         '/cohorts/ai-engineering',
         '/cohorts/aws-cloud',

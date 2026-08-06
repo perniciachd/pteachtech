@@ -1,26 +1,32 @@
 import { Star, Quote } from 'lucide-react'
-import { createAdminClient } from '@/lib/supabase/admin'
+import { getSql } from '@/lib/db'
 
 type Featured = { training_name: string; location: string | null; liked_most: string | null; overall: number | null }
 
 async function getData(): Promise<{ featured: Featured[]; avg: number; count: number } | null> {
   try {
-    const supabase = createAdminClient()
-    const [{ data: feat }, { data: all }] = await Promise.all([
-      supabase
-        .from('training_feedback')
-        .select('training_name, location, liked_most, overall')
-        .eq('featured', true)
-        .not('liked_most', 'is', null)
-        .order('created_at', { ascending: false })
-        .limit(9),
-      supabase.from('training_feedback').select('overall').not('overall', 'is', null),
+    const sql = getSql()
+    const [feat, agg] = await Promise.all([
+      sql`
+        select training_name, location, liked_most, overall
+        from training_feedback
+        where featured = true and liked_most is not null
+        order by created_at desc
+        limit 9
+      `,
+      sql`
+        select avg(overall)::float as avg, count(overall)::int as count
+        from training_feedback
+        where overall is not null
+      `,
     ])
-    const featured = (feat ?? []) as Featured[]
-    const vals = (all ?? []).map((r) => r.overall as number).filter((n) => typeof n === 'number')
-    const avg = vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : 0
-    return { featured, avg, count: vals.length }
+    return {
+      featured: feat as Featured[],
+      avg: (agg[0]?.avg as number) ?? 0,
+      count: (agg[0]?.count as number) ?? 0,
+    }
   } catch {
+    // The wall is decorative — never let a DB hiccup break the homepage.
     return null
   }
 }
