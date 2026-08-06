@@ -133,9 +133,9 @@ export default function AlumniPage() {
               Want to be a founding alumnus?
             </h2>
             <p className="mt-4 text-lg text-muted-foreground text-pretty">
-              The first 20 founding-cohort enrollees will literally be Cohort 1. Reserve a seat,
-              ship a real capstone, and your name and outcomes might be the first ones featured
-              on this page in September 2026.
+              Our earliest cohorts are running now. Join one with your team, ship a real capstone,
+              and your name and outcomes might be the first ones featured on this page in
+              September 2026.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button asChild size="lg" className="gap-2">

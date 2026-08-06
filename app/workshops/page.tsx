@@ -255,7 +255,7 @@ export default function WorkshopsPage() {
                 Join the city waitlist
               </h2>
               <p className="mt-4 text-lg text-primary-foreground/80 leading-relaxed text-pretty">
-                We announce dates first to the waitlist. Founding-event pricing applies to the first 15 attendees per city.
+                We announce dates first to the waitlist. Tell us your city and team size and we&apos;ll scope a session around you.
               </p>
               <p className="mt-4 text-sm text-primary-foreground/70">
                 For pricing in your currency, book a 15-minute call with our Instructor via{' '}
