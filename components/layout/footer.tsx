@@ -10,6 +10,7 @@ const footerLinks = {
     { name: 'Workshops', href: '/workshops' },
     { name: 'Webinars', href: '/webinars' },
     { name: 'Blog', href: '/blog' },
+    { name: 'Training feedback', href: '/feedback' },
   ],
   company: [
     { name: 'About', href: '/about' },
