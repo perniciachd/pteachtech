@@ -87,6 +87,9 @@ export default function FeedbackAdmin() {
                 {data.summary.trainings.map((t) => <option key={t} value={t}>{t}</option>)}
               </select>
             )}
+            <Button variant="outline" size="sm" asChild>
+              <a href="/feedback/qr" target="_blank" rel="noreferrer">Show QR</a>
+            </Button>
             <Button variant="outline" size="sm" onClick={load} className="gap-1">
               <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} /> Refresh
             </Button>
