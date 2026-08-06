@@ -376,7 +376,7 @@ function InternalCohortCompare() {
                   <th key={cohort.id} className="p-4 text-center">
                     <div className="space-y-2">
                       <Badge variant={cohort.status === 'open' ? 'default' : 'secondary'}>
-                        {cohort.status === 'open' ? 'Open · founding seats' : 'Upcoming'}
+                        {cohort.status === 'open' ? 'Enrolling now' : 'Upcoming'}
                       </Badge>
                       <h3 className="text-lg font-bold text-foreground">{cohort.name}</h3>
                       <p className="text-xs text-muted-foreground">{cohort.tagline}</p>
@@ -471,7 +471,7 @@ function InternalCohortCompare() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <Badge variant={cohort.status === 'open' ? 'default' : 'secondary'}>
-                      {cohort.status === 'open' ? 'Open · founding seats' : 'Upcoming'}
+                      {cohort.status === 'open' ? 'Enrolling now' : 'Upcoming'}
                     </Badge>
                   </div>
                   <CardTitle>{cohort.name}</CardTitle>

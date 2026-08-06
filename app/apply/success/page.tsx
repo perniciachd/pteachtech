@@ -27,7 +27,7 @@ function ApplySuccessInner() {
               You&apos;re in.
             </h1>
             <p className="mt-4 text-lg text-muted-foreground leading-relaxed text-pretty">
-              Your founding-cohort seat is reserved. A confirmation email is on its way — usually arrives within 2 minutes.
+              Your place is confirmed. A confirmation email is on its way — usually arrives within 2 minutes.
             </p>
           </div>
 

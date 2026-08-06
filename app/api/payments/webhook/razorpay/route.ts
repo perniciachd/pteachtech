@@ -120,7 +120,7 @@ export async function POST(request: NextRequest) {
               <h2 style="font-family:Manrope,system-ui,sans-serif;color:#1B2D6B">
                 You're in, ${escapeHtml(applicantName)}.
               </h2>
-              <p>Your founding-cohort seat in <strong>${escapeHtml(cohortName)}</strong> is reserved.</p>
+              <p>Your place in <strong>${escapeHtml(cohortName)}</strong> is confirmed.</p>
               <p><strong>Amount paid:</strong> ₹${amountInr}<br/>
                  <strong>Payment reference:</strong> ${payment.id}<br/>
                  <strong>Application reference:</strong> ${escapeHtml(applicationId)}</p>
@@ -142,7 +142,7 @@ export async function POST(request: NextRequest) {
                 pTeachTech · by Pernicia · <a href="https://pteachtech.in">pteachtech.in</a>
               </p>
             `,
-            text: `You're in, ${applicantName}.\n\nYour founding-cohort seat in ${cohortName} is reserved.\n\nAmount paid: ₹${amountInr}\nPayment ref: ${payment.id}\nApplication ref: ${applicationId}\n\nWhat happens next:\n1. Welcome pack within 48 hours\n2. Pre-cohort assessment review\n3. Kickoff Saturday before Day 1\n\nRefund: full if requested before Day 3.\n\n— Team pTeachTech\npteachtech.in`,
+            text: `You're in, ${applicantName}.\n\nYour place in ${cohortName} is confirmed.\n\nAmount paid: ₹${amountInr}\nPayment ref: ${payment.id}\nApplication ref: ${applicationId}\n\nWhat happens next:\n1. Welcome pack within 48 hours\n2. Pre-cohort assessment review\n3. Kickoff Saturday before Day 1\n\nRefund: full if requested before Day 3.\n\n— Team pTeachTech\npteachtech.in`,
           })
         }
         break

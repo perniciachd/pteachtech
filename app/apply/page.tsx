@@ -156,10 +156,10 @@ function ApplyPageInner() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="mb-4" variant="secondary">
-              Founding cohort · first 20 seats per batch
+              Instructor-led · hands-on labs
             </Badge>
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl text-balance">
-              Reserve your seat
+              Confirm your place
             </h1>
             <p className="mt-4 text-lg text-muted-foreground leading-relaxed text-pretty">
               Full refund if you cancel before Day 3 · 50% refund through Day 9 · See <Link href="/refund" className="underline">refund policy</Link> for details.
@@ -293,7 +293,7 @@ function ApplyPageInner() {
                         maxLength={300}
                       />
                       <p className="text-xs text-muted-foreground">
-                        If you haven&apos;t completed the assessment yet, that&apos;s fine — submit your seat reservation and we&apos;ll follow up with the assessment link.
+                        If you haven&apos;t completed the assessment yet, that&apos;s fine — submit your enrolment and we&apos;ll follow up with the assessment link.
                       </p>
                     </div>
 
@@ -321,7 +321,7 @@ function ApplyPageInner() {
                     <Button type="submit" size="lg" className="w-full gap-2" disabled={loading || !isIndia}>
                       {loading ? 'Preparing checkout...' : (
                         <>
-                          Pay ₹{(amountPaise / 100).toLocaleString('en-IN')} · Reserve seat
+                          Pay ₹{(amountPaise / 100).toLocaleString('en-IN')} · Confirm place
                           <ArrowRight className="h-4 w-4" />
                         </>
                       )}

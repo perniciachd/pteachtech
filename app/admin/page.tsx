@@ -32,7 +32,6 @@ type PaymentRow = {
 type CohortSummary = {
   slug: string
   name: string
-  totalSeats: number
   capturedCount: number
   capturedRevenueInr: number
 }
@@ -198,33 +197,26 @@ export default function AdminDashboard() {
           </Card>
         </div>
 
-        {/* Cohort capacity */}
+        {/* Per-program revenue. Programs are scoped per client, so there is no
+            capacity to track — only what each has actually brought in. */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">Cohort capacity</CardTitle>
-            <CardDescription>Captured payments vs founding-cohort capacity (20 seats each)</CardDescription>
+            <CardTitle className="text-lg">Revenue by program</CardTitle>
+            <CardDescription>Captured payments per program</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              {(data?.summary.cohorts ?? []).map((c) => {
-                const pct = Math.min(100, Math.round((c.capturedCount / c.totalSeats) * 100))
-                return (
-                  <div key={c.slug}>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="font-medium text-foreground">{c.name}</span>
-                      <span className="text-muted-foreground">
-                        {c.capturedCount}/{c.totalSeats} seats · {formatInr(c.capturedRevenueInr)}
-                      </span>
-                    </div>
-                    <div className="mt-1.5 h-2 w-full rounded-full bg-secondary overflow-hidden">
-                      <div
-                        className="h-full bg-primary transition-all"
-                        style={{ width: `${pct}%` }}
-                      />
-                    </div>
-                  </div>
-                )
-              })}
+            <div className="space-y-2">
+              {(data?.summary.cohorts ?? []).map((c) => (
+                <div key={c.slug} className="flex items-center justify-between border-b py-2 text-sm last:border-0">
+                  <span className="font-medium text-foreground">{c.name}</span>
+                  <span className="text-muted-foreground">
+                    {c.capturedCount} payment{c.capturedCount === 1 ? '' : 's'} · {formatInr(c.capturedRevenueInr)}
+                  </span>
+                </div>
+              ))}
+              {(data?.summary.cohorts ?? []).length === 0 && (
+                <p className="text-sm text-muted-foreground">No programs configured.</p>
+              )}
             </div>
           </CardContent>
         </Card>

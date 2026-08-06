@@ -41,8 +41,6 @@ export interface Cohort {
   color: 'primary' | 'accent' | 'secondary'
   duration: string
   startDate: string
-  totalSeats: number
-  availableSeats: number
   status: 'upcoming' | 'open' | 'in_progress' | 'completed'
   /** Label for curriculum units. Defaults to 'Week'. B2B programs use 'Module'. */
   curriculumUnitLabel?: string
@@ -75,8 +73,6 @@ const allCohorts: Cohort[] = [
     color: 'secondary',
     duration: '5-day core or 10-day enterprise track · instructor-led + hands-on labs',
     startDate: 'Rolling · private team cohorts',
-    totalSeats: 20,
-    availableSeats: 20,
     status: 'open',
     curriculumUnitLabel: 'Module',
     b2b: true,
@@ -222,8 +218,6 @@ const allCohorts: Cohort[] = [
     color: 'accent',
     duration: '4 weeks · 60 hours · 3 hrs/day × 20 days',
     startDate: 'Rolling · private team cohorts',
-    totalSeats: 20,
-    availableSeats: 20,
     status: 'open',
     curriculumUnitLabel: 'Week',
     b2b: true,
@@ -333,11 +327,9 @@ const allCohorts: Cohort[] = [
     color: 'primary',
     duration: '6 weeks · 60 hours · 2 hrs/day × 5 days',
     startDate: 'July 20, 2026',
-    totalSeats: 20,
-    availableSeats: 20,
     status: 'open',
     highlights: [
-      'Founding-cohort pricing ₹30,000 (first 20 seats only)',
+      'Introductory pricing ₹30,000',
       'Live instructor-led · 7–9 PM IST (covers India + Middle East)',
       'BFSI capstone: deploy a production RAG with citations, eval, observability',
       '60-day post-cohort placement support · India Y1',
@@ -405,7 +397,7 @@ const allCohorts: Cohort[] = [
       },
     ],
     pricing: [
-      { region: 'India', currency: 'INR', price: 40000, note: 'Founding cohort ₹30,000 (first 20 seats)' },
+      { region: 'India', currency: 'INR', price: 40000, note: 'Introductory pricing ₹30,000' },
       { region: 'Middle East', currency: 'USD', price: 1000 },
       { region: 'US/EU (online + mentor)', currency: 'USD', price: 2000 },
     ],
@@ -491,11 +483,9 @@ const allCohorts: Cohort[] = [
     color: 'accent',
     duration: '6 weeks · 60 hours · 2 hrs/day × 5 days',
     startDate: 'September 1, 2026',
-    totalSeats: 20,
-    availableSeats: 20,
     status: 'upcoming',
     highlights: [
-      'Founding-cohort pricing ₹22,000 (first 20 seats only)',
+      'Introductory pricing ₹22,000',
       'AWS Solutions Architect Associate (SAA-C03) prep included',
       'Capstone: production-grade multi-AZ reference architecture',
       'BFSI compliance baked in (RBI / DPDP)',
@@ -557,7 +547,7 @@ const allCohorts: Cohort[] = [
       },
     ],
     pricing: [
-      { region: 'India', currency: 'INR', price: 30000, note: 'Founding cohort ₹22,000 (first 20 seats)' },
+      { region: 'India', currency: 'INR', price: 30000, note: 'Introductory pricing ₹22,000' },
       { region: 'Middle East', currency: 'USD', price: 700 },
       { region: 'US/EU (online + mentor)', currency: 'USD', price: 1600 },
     ],
@@ -627,8 +617,6 @@ const allCohorts: Cohort[] = [
     color: 'primary',
     duration: '2 weeks (Tier 1) + 2 weeks (Tier 2, selection-gated)',
     startDate: 'November 2, 2026',
-    totalSeats: 25,
-    availableSeats: 25,
     status: 'upcoming',
     highlights: [
       'Tier 1 ₹15,000 · Tier 2 +₹10,000 (selection-gated)',

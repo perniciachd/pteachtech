@@ -29,7 +29,7 @@ function CohortOverviewCard({ cohort }: { cohort: Cohort }) {
       {/* Status indicator */}
       <div className="absolute right-4 top-4">
         <Badge variant={isOpen ? 'default' : 'secondary'}>
-          {cohort.b2b ? 'Private program' : isOpen ? 'Founding seats open' : 'Coming soon'}
+          {cohort.b2b ? 'Private program' : isOpen ? 'Enrolling now' : 'Coming soon'}
         </Badge>
       </div>
 
@@ -55,11 +55,7 @@ function CohortOverviewCard({ cohort }: { cohort: Cohort }) {
           <div className="flex items-center gap-2 text-muted-foreground">
             <Users className="h-4 w-4" />
             <span>
-              {cohort.b2b
-                ? 'Private team program'
-                : isOpen
-                ? `${cohort.availableSeats}/${cohort.totalSeats} founding seats`
-                : `Capped at ${cohort.totalSeats}`}
+              {cohort.b2b ? 'Private team program · onsite or virtual' : 'Instructor-led · hands-on labs'}
             </span>
           </div>
         </div>
@@ -109,17 +105,11 @@ function CohortOverviewCard({ cohort }: { cohort: Cohort }) {
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
-          {cohort.b2b ? (
-            <Button asChild variant="outline">
-              <Link href="/contact">Book a scoping call</Link>
-            </Button>
-          ) : (
-            isOpen && (
-              <Button asChild variant="outline">
-                <Link href={`/apply?cohort=${cohort.slug}`}>Reserve seat</Link>
-              </Button>
-            )
-          )}
+          <Button asChild variant="outline">
+            <Link href="/contact">
+              {cohort.b2b ? 'Book a scoping call' : 'Discuss your requirement'}
+            </Link>
+          </Button>
         </div>
       </CardContent>
     </Card>
@@ -159,9 +149,10 @@ export default function CohortsPage() {
         <section className="py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-foreground">Founding seats open</h2>
+              <h2 className="text-2xl font-bold text-foreground">What we deliver</h2>
               <p className="mt-2 text-muted-foreground">
-                First 20 seats per cohort at founding pricing. After that, standard pricing applies for the batch.
+                Instructor-led programs delivered privately to your team — onsite or virtual.
+                Tell us your stack and goals and we&apos;ll scope the track, duration and pricing around them.
               </p>
             </div>
             <div className="grid gap-8 lg:grid-cols-2 xl:grid-cols-3">
@@ -180,7 +171,7 @@ export default function CohortsPage() {
             <div className="mb-8">
               <h2 className="text-2xl font-bold text-foreground">Coming next</h2>
               <p className="mt-2 text-muted-foreground">
-                Join the waitlist for early access and founding-cohort pricing when seats open.
+                In development. Tell us if one of these fits your team and we&apos;ll factor it into scheduling.
               </p>
             </div>
             <div className="grid gap-8 lg:grid-cols-2 xl:grid-cols-3">

@@ -54,7 +54,7 @@ export default function RefundPage() {
               Pre-cohort assessment failures
             </h2>
             <p className="text-muted-foreground mb-4">
-              If you reserve a seat and subsequently do not pass our pre-cohort skill assessment,
+              If you enrol and subsequently do not pass our pre-cohort skill assessment,
               you receive a <strong>100% refund</strong> regardless of timing — including
               up to the day before the cohort starts. The assessment is a fit check, not a
               gotcha; we don&apos;t profit from misalignment.
@@ -69,7 +69,7 @@ export default function RefundPage() {
             <ul className="list-disc pl-6 text-muted-foreground mb-4 space-y-2">
               <li><strong>14+ days before the workshop:</strong> 100% refund.</li>
               <li><strong>7–13 days before:</strong> 50% refund.</li>
-              <li><strong>Less than 7 days before:</strong> No refund; you may transfer your seat to a colleague at no additional cost.</li>
+              <li><strong>Less than 7 days before:</strong> No refund; you may transfer your place to a colleague at no additional cost.</li>
             </ul>
 
             <h2 className="text-2xl font-semibold text-foreground mt-8 mb-4">

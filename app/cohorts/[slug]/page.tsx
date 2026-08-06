@@ -82,7 +82,7 @@ function CohortHero({ cohort }: { cohort: Cohort }) {
                   </div>
                   <div className="flex items-center gap-2">
                     <Users className="h-5 w-5 text-muted-foreground" />
-                    <span className="text-foreground font-medium">{cohort.availableSeats} of {cohort.totalSeats} seats left</span>
+                    <span className="text-foreground font-medium">Instructor-led · hands-on labs</span>
                   </div>
                 </>
               )}
@@ -90,8 +90,8 @@ function CohortHero({ cohort }: { cohort: Cohort }) {
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Button asChild size="lg" className="gap-2">
-                <Link href={cohort.b2b ? '/contact' : `/apply?cohort=${cohort.slug}`}>
-                  {cohort.b2b ? 'Book a scoping call' : 'Reserve a founding seat'}
+                <Link href="/contact">
+                  {cohort.b2b ? 'Book a scoping call' : 'Discuss your requirement'}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
@@ -316,18 +316,15 @@ function ApplySection({ cohort }: { cohort: Cohort }) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl text-balance">
-            Ready to apply?
+            Ready to talk?
           </h2>
           <p className="mt-4 text-lg text-primary-foreground/80 text-pretty">
-            {cohort.status === 'open'
-              ? `The ${cohort.name} cohort starts ${cohort.startDate}. Founding-cohort pricing locked for the first 20 seats. Begin with our 30-minute pre-cohort skill assessment — we respond within 48 hours.`
-              : `The ${cohort.name} cohort opens ${cohort.startDate}. Join the waitlist or book a 15-minute discovery call to discuss fit.`
-            }
+            {`We scope ${cohort.name} around your team — stack, current level, timelines and delivery format. Tell us what you need and we'll come back within 48 hours with a proposed track and pricing.`}
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2">
-              <Link href={cohort.status === 'open' ? `/apply?cohort=${cohort.slug}` : '/contact'}>
-                {cohort.status === 'open' ? 'Reserve your seat' : 'Join the waitlist'}
+              <Link href="/contact">
+                Discuss your requirement
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>

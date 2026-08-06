@@ -25,7 +25,7 @@ export async function GET() {
 
   const payments = result.payments
 
-  // Compute summary: counts + revenue by status + per-cohort seat counts
+  // Compute summary: counts + revenue by status + per-program totals
   const capturedPayments = payments.filter((p) => p.status === 'captured')
   const totalRevenueInr = capturedPayments.reduce((sum, p) => sum + p.amountInr, 0)
 
@@ -41,7 +41,6 @@ export async function GET() {
     return {
       slug: c.slug,
       name: c.name,
-      totalSeats: c.totalSeats,
       capturedCount: captured.length,
       capturedRevenueInr: captured.reduce((sum, p) => sum + p.amountInr, 0),
     }

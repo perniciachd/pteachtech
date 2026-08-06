@@ -20,8 +20,6 @@ export async function GET() {
     description: cohort.description,
     duration: cohort.duration,
     startDate: cohort.startDate,
-    totalSeats: cohort.totalSeats,
-    availableSeats: cohort.availableSeats,
     status: cohort.status,
     highlights: cohort.highlights,
     icon: cohort.icon,
