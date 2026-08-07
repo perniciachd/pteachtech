@@ -15,7 +15,13 @@ export const contactCard = {
   phoneDisplay: '+91 95015 65955',
   linkedin: 'https://www.linkedin.com/in/mananjindal/',
   medium: 'https://medium.com/@manan_jindal',
-  website: 'https://pteachtech.in',
+  /**
+   * Personal homepage. Apex, not www — www.mananjindal.com resolves in DNS but
+   * its TLS certificate doesn't cover the subdomain, so https://www fails.
+   * Switch to www here once a cert is issued for it.
+   */
+  website: 'https://mananjindal.com',
+  websiteDisplay: 'mananjindal.com',
 } as const
 
 /**
