@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { sessionUrl } from '@/lib/feedback/session'
-import { qrPng, qrSvg } from '@/lib/feedback/qr'
+import { qrPng, qrSvg } from '@/lib/qr'
 
 export const runtime = 'nodejs'
 // Access is gated by middleware (/api/admin/* requires a valid admin session).
