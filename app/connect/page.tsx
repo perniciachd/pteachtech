@@ -18,7 +18,7 @@ const links = [
   { icon: Phone, label: 'Phone', value: contactCard.phoneDisplay, href: `tel:${contactCard.phone}` },
   { icon: Linkedin, label: 'LinkedIn', value: '/in/mananjindal', href: contactCard.linkedin },
   { icon: BookOpen, label: 'Medium', value: '@manan_jindal', href: contactCard.medium },
-  { icon: Globe, label: 'Website', value: 'pteachtech.in', href: contactCard.website },
+  { icon: Globe, label: 'Website', value: contactCard.websiteDisplay, href: contactCard.website },
 ]
 
 export default async function ConnectPage() {
