@@ -13,6 +13,8 @@ export default function robots(): MetadataRoute.Robots {
         '/feedback',
         // Per-session feedback QR links
         '/f/',
+        // Personal contact card (phone/email — kept out of search & scrapers)
+        '/connect',
         // Retired / hidden B2C cohorts
         '/cohorts/ai-engineering',
         '/cohorts/aws-cloud',

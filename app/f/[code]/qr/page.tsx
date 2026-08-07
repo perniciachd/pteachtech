@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getSessionByCode, sessionUrl } from '@/lib/feedback/session'
-import { qrSvg } from '@/lib/feedback/qr'
+import { qrSvg } from '@/lib/qr'
 
 // The poster reflects whatever the session says right now — edit the session
 // and re-print without ever regenerating a QR by hand.

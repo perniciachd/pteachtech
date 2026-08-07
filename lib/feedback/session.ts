@@ -1,5 +1,6 @@
 import { randomInt } from 'crypto'
 import { getSql } from '@/lib/db'
+import { siteUrl } from '@/lib/site'
 
 /** Session context stamped onto every response collected under a QR. */
 export type TrainingSession = {
@@ -62,15 +63,6 @@ export async function getSessionByCode(code: string): Promise<TrainingSession | 
     console.error('[session] lookup failed:', err)
     return null
   }
-}
-
-/** Absolute base URL for links printed onto QR posters. */
-export function siteUrl(): string {
-  const configured = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '')
-  if (configured) return configured
-  const vercel = process.env.VERCEL_URL
-  if (vercel) return `https://${vercel}`
-  return 'https://pteachtech.in'
 }
 
 /** The URL a session's QR encodes. */
