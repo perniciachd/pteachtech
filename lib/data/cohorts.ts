@@ -59,6 +59,173 @@ export interface Cohort {
 
 const allCohorts: Cohort[] = [
   // ============================================================
+  // FLAGSHIP (B2B): AI Forward Deployed Engineer — Foundation
+  // 80-hour private team program. No public per-seat price.
+  // Source of truth for content:
+  //   ~/Documents/pTeachTech/TeamLease/ai-forward-deployed-engineer-foundation-80hrs.html
+  // ============================================================
+  {
+    id: 'ai-forward-deployed-engineer',
+    slug: 'ai-forward-deployed-engineer',
+    name: 'AI Forward Deployed Engineer — Foundation',
+    tagline: 'Engineers who can find the use case, ship the agent and prove the ROI',
+    description:
+      'An 80-hour B2B program that builds project-ready AI Forward Deployed Engineers and Architects — practitioners who can sit inside a client\'s business, find the use case worth doing, design and build the agent against real systems of record, harden it for production, and defend the numbers afterwards. Deep agentic engineering, AI-native software delivery, production architecture and the consulting muscle to convert a pilot into a funded implementation. Includes an 8-hour domain elective in Retail & E-commerce or FinTech & BFSI.',
+    icon: 'brain',
+    color: 'primary',
+    duration: '80 hours · 10.5 days · instructor-led + hands-on labs',
+    startDate: 'Rolling · private team cohorts',
+    status: 'open',
+    curriculumUnitLabel: 'Module',
+    b2b: true,
+    highlights: [
+      'Model- and cloud-agnostic — Claude, GPT, Gemini, Qwen & DeepSeek across Bedrock, Vertex, Foundry and on-premise',
+      '57% of the hours on hands-on agentic engineering — agents, MCP servers, multi-agent systems, evals and guardrails',
+      'Ship autonomously with Claude Code, OpenAI Codex and spec-driven development',
+      '8-hour domain elective — Retail & E-commerce or FinTech & BFSI (12 domains available)',
+      'Two client-grade capstones + 6 months of post-program AI coaching',
+    ],
+    curriculum: [
+      { week: 1, title: 'Module 1 · Generative AI & LLM Foundations', topics: [
+        'What a Forward Deployed Engineer / Architect actually does',
+        'AI, ML and deep learning — enough to reason about capability, cost and failure modes',
+        'LLMs and multimodal LLMs: context windows, tokenization, reasoning modes, model families',
+        'Demo: solving ML and NLP problems with LLMs — and when that is the wrong choice',
+      ] },
+      { week: 2, title: 'Module 2 · Retrieval Augmented Generation', topics: [
+        'RAG pipelines: ingestion, chunking strategies, embeddings and vector stores',
+        'Retrieval mechanics, hybrid search and reranking',
+        'Accuracy engineering — query rewriting, chunk optimisation, measured improvement',
+        'Advanced RAG: Agentic, Graph, Multimodal, Hybrid and Page Index',
+        'Lab: full ingestion → indexing → retrieval → generation pipeline',
+      ] },
+      { week: 3, title: 'Module 3 · AI Agents & MCP Servers — Deep Dive', topics: [
+        'Agent design method: goal, boundaries, tools, memory, escalation, evaluation criteria',
+        'Tool use, function calling and MCP client / host / server topology',
+        'MCP server security — scoping, tool poisoning and confused-deputy risks',
+        'Context engineering, agentic memory and deep agents for long-running tasks',
+        'Multi-agent topologies and agentic pricing models',
+      ] },
+      { week: 4, title: 'Module 4 · Building & Integrating AI Agents', topics: [
+        'Multi-agent systems with LangGraph, Google ADK and AWS Strands SDK',
+        'Building a custom MCP server with FastMCP against real enterprise tools',
+        'A2A protocol, reflection loops, Agent Skills and Agents.md',
+        'Harness and loop engineering; ontologies, knowledge graphs and context graphs',
+        'Model selection: capability, latency, cost, tool-calling reliability, residency',
+      ] },
+      { week: 5, title: 'Module 5 · Production Deployment, Evals & Governance', topics: [
+        'Agent evaluation: golden sets, offline vs online, regression testing',
+        'LLM-as-a-judge, Galileo AI and Arize Phoenix',
+        'Agent security — identity, threat modelling, OWASP Top 10 for LLMs, red teaming',
+        'Guardrails, observability, cost optimisation and post-production operations',
+        'Governance: ISO/IEC 42001, NIST AI RMF, Databricks AI Governance',
+      ] },
+      { week: 6, title: 'Module 6 · Autonomous Software Development', topics: [
+        'Claude Code and OpenAI Codex — memory, tools, skills and the harness',
+        'Spec-driven development with GitHub Spec Kit; BMAD',
+        'MCP servers in the IDE; Agent Skills, Agents.md and plugins',
+        'Agents across the SDLC — design, testing, DevOps, observability, incident management',
+        'Build: Database Ops, FinOps and DevOps agents end to end',
+      ] },
+      { week: 7, title: 'Module 7 · Well-Architected AI', topics: [
+        'Well-architected pillars applied to AI agents',
+        'Agentic reference architectures and when to deviate from them',
+        'Multi-agent communication: orchestration versus choreography',
+        'The backend system design that decides whether the AI half works',
+      ] },
+      { week: 8, title: 'Module 8 · AI Infrastructure', topics: [
+        'On-premise AI infra — NVIDIA, AMD and Apple Mac Studio / Mac Mini clusters',
+        'Local development with Ollama and open-weight models',
+        'Scaled inference with vLLM and CNCF llm-d on Kubernetes',
+        'Deploying and scaling agents and MCP servers on AWS, GCP and Azure',
+      ] },
+      { week: 9, title: 'Module 9 · Selling & Delivering AI Solutions', topics: [
+        'The consulting mindset and the four conversations an FDE must hold',
+        'Use-case discovery: process mining, sizing the prize, scoring feasibility against value',
+        'Structuring a pilot so it can graduate to production',
+        'Post-production operations and an ROI model a CFO will accept',
+        'Case studies: an agentic pilot, and an implementation for a bank',
+      ] },
+      { week: 10, title: 'Module 10 · Domain Elective (choose one)', topics: [
+        'Retail & E-commerce — catalog and OMS reality, fulfilment and returns economics, RTO risk',
+        'FinTech & BFSI — payments, lending, credit risk, KYC/AML and the ledger',
+        'Systems of record: entities, data models and integration surfaces, hands-on',
+        'Where agents can actually attach — and the governance that gates deployment',
+        '12 domains available; we scope the right elective with you',
+      ] },
+      { week: 11, title: 'Capstone · Agent + RAG builds', topics: [
+        'Capstone A: an agentic system on a real operational workflow, integrated via MCP',
+        'Capstone B: a grounded knowledge system over a messy domain corpus',
+        'Evals, guardrails, tracing and a per-transaction cost model',
+        'Sponsor-grade demo, handover artefact and panel review',
+      ] },
+    ],
+    pricing: [],
+    instructors: [
+      {
+        name: 'Manan Jindal',
+        title: 'Principal Trainer & Solution Architect · 15+ years',
+        company: 'pTeachTech · Pernicia (Canada)',
+        linkedin: 'https://linkedin.com/in/manan-jindal',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is this a private, team-based program?',
+        answer:
+          'Yes. This is a B2B program delivered privately to your team — onsite or virtual — and tailored to your stack, domain and goals. We don\'t sell individual seats for this program.',
+      },
+      {
+        question: 'What is a Forward Deployed Engineer?',
+        answer:
+          'A hybrid of engineer, solutions architect and consultant, deployed into the customer\'s environment rather than shipping code over a wall. They map the real workflow, choose the right agentic pattern, wire it into the client\'s systems of record, and survive the security and finance review that follows. It is the delivery model behind the enterprise-AI vendors that are actually shipping.',
+      },
+      {
+        question: 'How are the 80 hours split?',
+        answer:
+          '46 hours on agentic AI engineering, 14 on AI-native software delivery, 12 across architecture, infrastructure and commercial delivery, and 8 on the domain elective. The weighting is deliberate — an engineer who cannot personally build, debug and evaluate a multi-agent system will not survive the first engagement.',
+      },
+      {
+        question: 'Which domain electives are available?',
+        answer:
+          'Twelve, including BFSI, Insurance, Life Sciences, Oil & Gas, CPG, Retail & E-commerce, and horizontal functions such as F&A, HR, Supply Chain, Sales, Marketing and Service. Retail & E-commerce and FinTech & BFSI are the two we detail by default; we scope the right one with you.',
+      },
+      {
+        question: 'Is it tied to one model vendor or cloud?',
+        answer:
+          'No — deliberately. Teams work across Claude, GPT, Gemini, Qwen and DeepSeek, on AWS Bedrock, Google Vertex, Azure AI Foundry and on-premise. An FDE inherits whatever stack the client already has.',
+      },
+      {
+        question: 'What happens after the 80 hours?',
+        answer:
+          'Two capstone projects assessed by a panel, a skills interview and an assessment test — then six months of AI coaching with monthly support, new-technology immersion and a live engagement clinic.',
+      },
+      {
+        question: 'What does it cost?',
+        answer:
+          'Pricing is competitive and tailored to format, scope and team size. Book a scoping call and we\'ll design a program for your team.',
+      },
+    ],
+    outcomes: [
+      'Select the right model and architectural pattern, and justify the cost, latency, accuracy and residency trade-offs',
+      'Build production-grade RAG with hybrid retrieval and reranking, and measurably improve its accuracy',
+      'Design and build multi-agent systems with tool use, MCP, memory, reflection and A2A collaboration',
+      'Build and secure a custom MCP server and integrate it into agents and coding assistants',
+      'Evaluate, guardrail and red-team agents against the OWASP Top 10 for LLM applications',
+      'Run use-case discovery, shape and price a pilot, and build a defensible ROI case',
+      'Speak the client\'s domain — entities, processes and systems of record — credibly from day one',
+    ],
+    prerequisites: [
+      'For teams: software engineers, data/ML engineers, solution architects, technical consultants and pre-sales engineers',
+      'Working proficiency in Python; TypeScript/JavaScript helpful but not required',
+      'Comfort with Git, the command line, REST APIs and JSON',
+      'Basic cloud literacy on at least one of AWS, Azure or GCP',
+      'Sandbox access — LLM API keys, a cloud subscription with spending guardrails, a vector database (we help provision)',
+      'Delivered privately to your team — onsite or virtual',
+    ],
+  },
+
+  // ============================================================
   // FLAGSHIP (B2B): Multi-Agent Copilot & Enterprise AI Architecture
   // Private, team-based enterprise program. No public per-seat price.
   // ============================================================

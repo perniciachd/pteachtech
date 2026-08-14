@@ -74,7 +74,7 @@ export function CohortCardsSection() {
             Enterprise programs for your team.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground text-pretty">
-            From Multi-Agent Copilot &amp; Enterprise AI Architecture to Full-Stack Java, Kubernetes &amp; Cloud — practitioner-led programs delivered privately to your team.
+            From AI Forward Deployed Engineer and Multi-Agent Copilot &amp; Enterprise AI Architecture to Full-Stack Java, Kubernetes &amp; Cloud — practitioner-led programs delivered privately to your team.
           </p>
         </div>
         <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">

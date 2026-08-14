@@ -9,7 +9,7 @@ import { cohorts, type Cohort } from '@/lib/data/cohorts'
 export const metadata = {
   title: 'Enterprise AI Programs',
   description:
-    'Multi-Agent Copilot & Enterprise AI Architecture — a private, hands-on program delivered to your team on Microsoft Copilot Studio & Azure by 15+ year practitioners. Competitive, tailored pricing.',
+    'Private, hands-on enterprise AI programs delivered to your team by 15+ year practitioners — AI Forward Deployed Engineer, Multi-Agent Copilot & Enterprise AI Architecture, and Full-Stack Java. Competitive, tailored pricing.',
   alternates: { canonical: 'https://pteachtech.in/cohorts' },
 }
 
@@ -130,7 +130,7 @@ export default function CohortsPage() {
               Training programs, built by practitioners.
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed text-pretty">
-              Live, instructor-led and hands-on. Our flagship enterprise program — Multi-Agent Copilot &amp; Enterprise AI Architecture — is delivered privately to your team, onsite or virtual, by 15+ year practitioners who build these systems for US &amp; European enterprises.
+              Live, instructor-led and hands-on. Our flagship program — AI Forward Deployed Engineer — turns engineers into practitioners who can find the use case, ship the agent and prove the ROI inside a client&apos;s business. Every program is delivered privately to your team, onsite or virtual, by 15+ year practitioners who build these systems for US &amp; European enterprises.
             </p>
             <div className="mt-8 flex justify-center gap-4 flex-wrap">
               <Button asChild variant="outline">

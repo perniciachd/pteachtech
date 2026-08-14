@@ -19,7 +19,7 @@ export function HeroSection() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
             </span>
-            New · Multi-Agent Copilot &amp; Enterprise AI Architecture
+            New · AI Forward Deployed Engineer — Foundation
           </div>
 
           {/* Headline */}
@@ -29,8 +29,8 @@ export function HeroSection() {
 
           {/* Subheadline */}
           <p className="mt-6 text-lg text-muted-foreground sm:text-xl leading-relaxed text-pretty">
-            Private, hands-on programs that take your team from single Copilots to governed,
-            multi-agent systems on Microsoft Copilot Studio &amp; Azure.
+            Private, hands-on programs that take your team from AI demos to governed, multi-agent
+            systems running against real systems of record.
             <br className="hidden sm:block" />
             Delivered by 15+ year practitioners who ship this for US &amp; European enterprises.
           </p>
@@ -38,7 +38,7 @@ export function HeroSection() {
           {/* CTAs */}
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button asChild size="lg" className="gap-2 text-base">
-              <Link href="/cohorts/enterprise-copilot">
+              <Link href="/cohorts/ai-forward-deployed-engineer">
                 View the program
                 <ArrowRight className="h-4 w-4" />
               </Link>

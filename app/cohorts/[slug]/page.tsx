@@ -50,7 +50,11 @@ function CohortHero({ cohort }: { cohort: Cohort }) {
                 <Icon className="h-6 w-6" />
               </div>
               <Badge variant={cohort.status === 'open' ? 'default' : 'secondary'} className="text-sm">
-                {cohort.status === 'open' ? 'Now Accepting Applications' : 'Coming Soon'}
+                {cohort.b2b
+                  ? 'Private team program'
+                  : cohort.status === 'open'
+                    ? 'Now Accepting Applications'
+                    : 'Coming Soon'}
               </Badge>
             </div>
             
@@ -132,7 +136,7 @@ function CurriculumSection({ cohort }: { cohort: Cohort }) {
             Curriculum
           </h2>
           <p className="mt-4 text-lg text-muted-foreground text-pretty">
-            A structured {cohort.duration} journey from fundamentals to production-ready skills
+            {cohort.duration} — a structured path from fundamentals to production-ready skills
           </p>
         </div>
         
