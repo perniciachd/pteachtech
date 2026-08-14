@@ -1,8 +1,10 @@
 # pTeachTech Website
 
-The public marketing site + applicant portal for **pTeachTech** — cohort-based AI and AWS Cloud engineering training, operated under [Pernicia](https://pernicia.in) (India Pvt Ltd + Canada Corp).
+The marketing site + admin portal for **pTeachTech** — **B2B enterprise AI and engineering training**, delivered as private team programs (onsite or virtual), operated under [Pernicia](https://pernicia.in) (India Pvt Ltd + Canada Corp).
 
 > *From notebooks to production.*
+
+Every program currently on the site is **B2B**: sold to organisations for their teams, not per-seat to individuals. There is no public price and no individual enrolment flow — the CTA on every program is a scoping call. The earlier B2C cohorts are retired but retained in data (see [Cohort Data](#cohort-data)).
 
 ---
 
@@ -10,8 +12,9 @@ The public marketing site + applicant portal for **pTeachTech** — cohort-based
 
 - **Next.js 16** (App Router) + **React 19** + **TypeScript 5.7**
 - **Tailwind CSS 4** + **shadcn/ui** (Radix primitives)
-- **Supabase** (Auth + Postgres + Storage)
-- **Stripe** (USD/CAD/EUR) + **Razorpay** (INR) for dual-entity billing
+- **Neon** (serverless Postgres) — training feedback + session storage; migrations in `db/migrations`
+- **Supabase** (Auth) — `@supabase/ssr`; auth is gracefully skipped when env is absent
+- **Razorpay** (INR) — order creation + webhook. *Stripe env keys exist in `.env.example` but there is no Stripe code in the repo yet.*
 - **Resend** for transactional email
 - **Cal.com** embed for booking
 - Hosted on **Vercel** · CDN via **Cloudflare**
@@ -20,23 +23,43 @@ The public marketing site + applicant portal for **pTeachTech** — cohort-based
 
 ```
 Public:
-  /                                 Home
-  /cohorts                          All cohorts overview
-  /cohorts/ai-engineering           Cohort 1 detail
-  /cohorts/aws-cloud                Cohort 2 detail
-  /cohorts/ai-deployment            Cohort 3 detail (Combined, two-tier)
-  /workshops                        NA in-person 3-day intensives
-  /lens                             Resume Lens (launching Feb 2027)
-  /about · /compare · /alumni · /blog · /webinars · /contact
+  /                                   Home
+  /cohorts                            All programs overview
+  /cohorts/[slug]                     Program detail (SSG via generateStaticParams)
+                                        · ai-forward-deployed-engineer   (flagship, 80 hrs)
+                                        · enterprise-copilot             (5/10-day)
+                                        · fullstack-java                 (60 hrs)
+  /compare                            Program comparison
+  /workshops                          NA in-person intensives
+  /lens                               Resume Lens
+  /about · /alumni · /blog · /webinars · /contact
   /privacy · /terms · /refund
 
-Auth-gated:
-  /auth/login · /auth/callback
-  /protected/*
+Enrolment (legacy B2C flow — not linked from any B2B program):
+  /apply · /apply/success             Razorpay-backed enrolment
+
+Training feedback:
+  /feedback · /feedback/qr            Generic anonymous feedback form + QR
+  /f/[code] · /f/[code]/qr            Per-session feedback form + QR
+
+Contact card:
+  /connect · /connect/qr              Personal vCard + QR
+
+Admin (token-gated):
+  /admin · /admin/login
+  /admin/feedback · /admin/feedback/sessions
+
+Auth:
+  /auth/callback · /auth/error
 
 API:
   /api/cohorts · /api/contact · /api/waitlist · /api/webinar/register
+  /api/feedback · /api/vcard
+  /api/payments/create-order · /api/payments/webhook/razorpay
+  /api/admin/{login,logout,feedback,sessions,payments,qr}
 ```
+
+`sitemap.ts` is generated from the cohort data, so adding a visible program indexes it automatically. `robots.ts` disallows `/admin`, `/api/`, `/apply`, `/auth/`, `/feedback`, `/f/`, `/connect` and the three retired B2C cohort paths.
 
 ## Development
 
@@ -51,39 +74,63 @@ cp .env.example .env.local
 pnpm dev
 # → http://localhost:3000
 
+# Type check
+pnpm exec tsc --noEmit
+
 # Production build
 pnpm build && pnpm start
-
-# Lint
-pnpm lint
 ```
 
-The marketing site runs without any environment variables. Auth + payments require Supabase + Stripe + Razorpay credentials (see `.env.example`).
+The marketing site runs without any environment variables. Feedback storage needs `DATABASE_URL` (Neon); auth needs Supabase; payments need Razorpay (see `.env.example`).
+
+> **`pnpm lint` does not work.** The script is `eslint .`, but `eslint` is not declared in `dependencies` or `devDependencies`, so it fails with `ENOENT` on a clean install. Either add ESLint + `eslint-config-next` to devDependencies or drop the script. Until then, `tsc --noEmit` plus `pnpm build` are the gates.
 
 ## Brand
 
 | | pTeachTech (this site) | Pernicia (corporate) |
 |---|---|---|
 | Domain | pteachtech.in | pernicia.in |
-| Audience | Cohort learners (B2C) | Enterprise / B2B / NA workshops |
-| Voice | Accessible, technical, warm | Authoritative, premium |
+| Role | B2B training delivery — private team programs | Corporate parent · consulting, advisory & contracting entity |
+| Audience | Enterprise L&D, engineering leaders, delivery heads | Enterprise buyers, partners |
+| Voice | Practitioner-led, concrete, technical | Authoritative, premium |
 | Palette | Navy `#1B2D6B` + Yellow `#F4C430` | Black `#0E0E0E` + Gold `#C9A24B` |
 
 Brand brief and full system documentation live in the parent repo under `traingandenable/PERNICIA_BRAND_BRIEF.md`.
 
 ## Cohort Data
 
-Cohort metadata (names, dates, pricing, curriculum, FAQs) is the source of truth for the website and lives in `lib/data/cohorts.ts`. Any change there must be reflected in the locked planning docs:
+`lib/data/cohorts.ts` is the source of truth for every program surface — the listing page, home cards, compare table, sticky bar, sitemap and the `[slug]` detail route all read from it. **Adding a program is a data change, not a UI change**; only hardcoded marketing copy (home hero, `/cohorts` intro) ever needs touching.
+
+Two flags drive behaviour:
+
+| Flag | Effect |
+|---|---|
+| `b2b: true` | Private team program. Hides per-seat pricing, swaps every CTA to "Book a scoping call", badges as "Private team program", adds the *Delivered for* section, and sets `courseMode: ['Onsite','Online']` in the Course schema. Pair with `pricing: []`. |
+| `hidden: true` | Excluded from `cohorts` (and therefore from all listings, routes and the sitemap) while staying in `allCohorts` for future re-enable. |
+
+Also: `curriculumUnitLabel` switches the curriculum badge from `Week` to `Module` for programs not organised by week.
+
+**Currently visible (all B2B):**
+
+| Slug | Program | Duration |
+|---|---|---|
+| `ai-forward-deployed-engineer` | AI Forward Deployed Engineer — Foundation | 80 hrs · 10.5 days |
+| `enterprise-copilot` | Multi-Agent Copilot & Enterprise AI Architecture | 5-day core / 10-day enterprise |
+| `fullstack-java` | Full-Stack Java: Spring, React, Kubernetes & Cloud | 60 hrs · 4 weeks |
+
+**Retired B2C cohorts** (`hidden: true`, also disallowed in `robots.ts`): `ai-engineering`, `aws-cloud`, `ai-deployment`. Kept in data so pricing and curriculum history aren't lost. The locked planning docs below describe *these* programs:
 
 - `PERNICIA_AI_COHORT_SYLLABUS.md`
 - `PERNICIA_AWS_COHORT_CURRICULUM.md`
 - `PERNICIA_COMBINED_COHORT_CURRICULUM.md`
 - `PERNICIA_3YR_BUSINESS_PLAN.md`
 
+Content for the B2B programs lives outside this repo, in the delivery-collateral folder (program content decks and curriculum documents). Keep `cohorts.ts` and the corresponding deck in step — the deck is what goes to the client, this file is what goes on the web.
+
 ## Deployment
 
 - Production: deployed to Vercel on every push to `main`
-- Preview: every PR gets a preview URL
+- Preview: every PR gets a preview URL, with a Vercel status check on the PR
 - DNS: Cloudflare → Vercel
 - Production domain: `pteachtech.in`
 
