@@ -127,6 +127,28 @@ Also: `curriculumUnitLabel` switches the curriculum badge from `Week` to `Module
 
 Content for the B2B programs lives outside this repo, in the delivery-collateral folder (program content decks and curriculum documents). Keep `cohorts.ts` and the corresponding deck in step — the deck is what goes to the client, this file is what goes on the web.
 
+## Marketing attribution
+
+`lib/attribution.ts` + `components/attribution-tracker.tsx` answer *"which campaign produced this lead?"* — not just "how many people visited".
+
+**How it works.** The tracker (mounted once in the root layout, inside `<Suspense>` so static pages aren't deopted to dynamic) records UTM params, referrer and landing path on every navigation, into `localStorage`. **First touch wins and is never overwritten** — if someone arrives from a LinkedIn post, leaves, and returns a week later via Google, the post keeps the credit because it did the work. Last touch is stored separately and shown only when it differs.
+
+That payload is attached to contact-form submissions and rendered in the internal notification email under *"Where this lead came from"*, and the campaign params are appended to the outbound Cal.com URL so a booked call stays traceable across the domain boundary.
+
+**Tagging convention** — every marketing link must carry UTMs, or the visit is anonymous:
+
+```
+?utm_source=linkedin&utm_medium=social&utm_campaign=fde-2026&utm_content=post-04-integration
+```
+
+`utm_content` identifies the individual post/creative; everything else stays constant per campaign.
+
+**Constraints, so nobody over-trusts the numbers:**
+- `localStorage` is per-browser — a phone→laptop switch breaks the chain, as does clearing site data.
+- Storage is unavailable in Safari private mode and some embedded browsers. Every access is guarded; failure degrades to "no attribution" rather than a broken form.
+- Attribution arrives from the client and originates in URL params, so it is untrusted: every field is length-capped in the Zod schema and HTML-escaped before it reaches an email.
+- Nothing is sent to a third party and no cookies are set — it's first-party `localStorage` only.
+
 ## Deployment
 
 - Production: deployed to Vercel on every push to `main`

@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Mail, MapPin, Calendar, Send, CheckCircle } from 'lucide-react'
+import { getAttribution, withAttributionParams } from '@/lib/attribution'
 import { MarketingLayout } from '@/components/layout'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -44,6 +45,16 @@ export default function ContactPage() {
     message: '',
   })
 
+  // Carry the originating campaign across the domain boundary into Cal.com, so a
+  // booked call is still traceable to the post that earned it. Resolved after
+  // mount because localStorage doesn't exist during SSR — the base URL renders
+  // first and is swapped once, before anyone can interact with the widget.
+  const calBase = `https://cal.com/${CAL_LINK}`
+  const [calUrl, setCalUrl] = useState(calBase)
+  useEffect(() => {
+    setCalUrl(withAttributionParams(calBase))
+  }, [calBase])
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setFormState('loading')
@@ -53,7 +64,9 @@ export default function ContactPage() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        // Attribution is best-effort: if storage was unavailable this is simply
+        // absent, and the API treats it as optional.
+        body: JSON.stringify({ ...formData, attribution: getAttribution() }),
       })
 
       if (!res.ok) {
@@ -131,7 +144,7 @@ export default function ContactPage() {
               <CardContent>
                 <div className="rounded-lg overflow-hidden border bg-background">
                   <iframe
-                    src={`https://cal.com/${CAL_LINK}?embedType=inline&theme=light`}
+                    src={`${calUrl}${calUrl.includes('?') ? '&' : '?'}embedType=inline&theme=light`}
                     width="100%"
                     height="600"
                     frameBorder="0"
@@ -142,7 +155,7 @@ export default function ContactPage() {
                 <p className="mt-3 text-xs text-muted-foreground">
                   Prefer to book directly?{' '}
                   <a
-                    href={`https://cal.com/${CAL_LINK}`}
+                    href={calUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:underline"

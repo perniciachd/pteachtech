@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next'
+import { Suspense } from 'react'
 import { Manrope, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { AttributionTracker } from '@/components/attribution-tracker'
 import './globals.css'
 
 const manrope = Manrope({
@@ -17,14 +19,23 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'pTeachTech | Enterprise AI Training & Multi-Agent Copilot Cohorts',
+    default: 'pTeachTech | Enterprise AI Training for Teams — Agentic AI, Copilot & Cloud',
     template: '%s | pTeachTech',
   },
   description:
-    'Private, hands-on enterprise AI training by Pernicia (Canada). Multi-Agent Copilot & Enterprise AI Architecture on Microsoft Copilot Studio & Azure — delivered to US & European teams by 15+ year practitioners who build these systems in production.',
+    'Private, hands-on enterprise AI training by Pernicia (Canada). AI Forward Deployed Engineer, Multi-Agent Copilot & Enterprise AI Architecture, and Full-Stack Java — delivered to US, European and Indian teams by 15+ year practitioners who build these systems in production.',
+  // Note: Google has ignored the keywords meta tag since 2009. Retained only
+  // because some smaller crawlers and internal search tools still read it.
   keywords: [
     'Enterprise AI training',
     'AI training cohorts',
+    'AI Forward Deployed Engineer',
+    'Forward Deployed Engineer training',
+    'FDE training',
+    'Agentic AI engineering',
+    'MCP server training',
+    'Model Context Protocol',
+    'Multi-agent systems training',
     'Multi-Agent Copilot',
     'Microsoft Copilot Studio training',
     'Agentic AI training',
@@ -68,9 +79,9 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://pteachtech.in',
     siteName: 'pTeachTech',
-    title: 'pTeachTech | Enterprise AI Training & Multi-Agent Copilot Cohorts',
+    title: 'pTeachTech | Enterprise AI Training for Teams',
     description:
-      'Private, hands-on enterprise AI training. Multi-Agent Copilot & Enterprise AI Architecture on Copilot Studio & Azure, delivered to US & European teams by 15+ year practitioners.',
+      'Private, hands-on enterprise AI training. AI Forward Deployed Engineer, Multi-Agent Copilot & Enterprise AI Architecture, and Full-Stack Java — delivered privately to your team by 15+ year practitioners.',
     images: [
       {
         url: '/og-image.png',
@@ -82,9 +93,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'pTeachTech | Enterprise AI Training & Multi-Agent Copilot Cohorts',
+    title: 'pTeachTech | Enterprise AI Training for Teams',
     description:
-      'Private, hands-on enterprise AI training. Multi-Agent Copilot & Enterprise AI Architecture, delivered to US & European teams by 15+ year practitioners.',
+      'Private, hands-on enterprise AI training. AI Forward Deployed Engineer, Multi-Agent Copilot and Full-Stack Java — delivered privately to your team by 15+ year practitioners.',
     images: ['/og-image.png'],
   },
   robots: {
@@ -121,7 +132,7 @@ export default function RootLayout({
     url: 'https://pteachtech.in',
     logo: 'https://pteachtech.in/og-image.png',
     description:
-      'Private, hands-on enterprise AI training. Multi-Agent Copilot & Enterprise AI Architecture on Microsoft Copilot Studio & Azure, delivered to US & European teams by 15+ year practitioners.',
+      'Private, hands-on enterprise AI training delivered to teams. Programs span agentic AI engineering, multi-agent Copilot architecture on Microsoft Copilot Studio & Azure, and full-stack Java on Kubernetes & AWS.',
     parentOrganization: { '@type': 'Organization', name: 'Pernicia', address: { '@type': 'PostalAddress', addressCountry: 'CA' } },
     knowsAbout: [
       'Enterprise AI training',
@@ -157,6 +168,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify([orgSchema, siteSchema]) }}
         />
+        <Suspense fallback={null}>
+          <AttributionTracker />
+        </Suspense>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
