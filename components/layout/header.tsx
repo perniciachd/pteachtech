@@ -84,7 +84,7 @@ export function Header() {
         {/* Desktop CTA */}
         <div className="hidden items-center gap-3 lg:flex">
           <Button variant="ghost" asChild>
-            <Link href="/cohorts/enterprise-copilot">View program</Link>
+            <Link href="/cohorts">View programs</Link>
           </Button>
           <Button asChild>
             <Link href="/contact">Book a scoping call</Link>
@@ -148,8 +148,8 @@ export function Header() {
                   </Link>
                 </Button>
                 <Button asChild className="w-full">
-                  <Link href="/cohorts/enterprise-copilot" onClick={() => setMobileMenuOpen(false)}>
-                    View program
+                  <Link href="/cohorts" onClick={() => setMobileMenuOpen(false)}>
+                    View programs
                   </Link>
                 </Button>
               </div>
