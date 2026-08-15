@@ -74,6 +74,40 @@ export async function POST(request: NextRequest) {
   // eslint-disable-next-line no-console
   console.log(`[razorpay-webhook] event=${event.event}`)
 
+  /**
+   * Ignore payments that are not ours.
+   *
+   * This Razorpay account is shared with another product (CosineHQ), and
+   * Razorpay fires `payment.captured` to EVERY webhook registered on the
+   * account — not only the one that created the order. Without this guard we
+   * treated any captured payment as a cohort enrolment.
+   *
+   * It happened in production: a ₹99 CosineHQ purchase triggered a
+   * "You're enrolled" email to that customer, addressed "You're in, there"
+   * for "your cohort" — the `?? 'there'` and `?? 'your cohort'` fallbacks
+   * below, firing because the notes belonged to a different product entirely.
+   *
+   * Every order we create carries `application_id` in its notes
+   * (see app/api/payments/create-order). Nothing else on this account does,
+   * so its absence is a reliable "not ours".
+   *
+   * We ACK rather than error: the webhook is valid and correctly signed, it
+   * simply is not addressed to us. A non-2xx would make Razorpay retry
+   * someone else's payment at us forever.
+   */
+  const paymentNotes = event.payload.payment?.entity?.notes ?? {}
+  const isOurPayment = Boolean(paymentNotes.application_id)
+
+  if (event.event.startsWith('payment.') && !isOurPayment) {
+    // eslint-disable-next-line no-console
+    console.log(
+      `[razorpay-webhook] Ignoring ${event.event} for order ` +
+        `${event.payload.payment?.entity?.order_id ?? 'unknown'} — no application_id in notes, ` +
+        `so it belongs to another product on this Razorpay account.`,
+    )
+    return NextResponse.json({ received: true, ignored: 'foreign-payment' })
+  }
+
   try {
     switch (event.event) {
       case 'payment.captured': {
@@ -176,6 +210,18 @@ export async function POST(request: NextRequest) {
       }
 
       case 'refund.created': {
+        /**
+         * NOT filtered by ownership, unlike payment.* above.
+         *
+         * A refund payload carries only payment_id — no notes — so telling
+         * ours from another product's on this shared Razorpay account would
+         * mean fetching the payment back from the API first. Left as-is
+         * deliberately: this branch emails the team internally and never
+         * reaches a customer, so a foreign refund is noise rather than the
+         * wrong-product email that payment.captured was sending.
+         *
+         * Worth fixing if this account keeps serving two products.
+         */
         const refund = event.payload.refund?.entity
         if (!refund) break
 
