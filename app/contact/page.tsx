@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useCallback, useSyncExternalStore } from 'react'
 import { Mail, MapPin, Calendar, Send, CheckCircle } from 'lucide-react'
 import { getAttribution, withAttributionParams } from '@/lib/attribution'
 import { MarketingLayout } from '@/components/layout'
@@ -46,14 +46,22 @@ export default function ContactPage() {
   })
 
   // Carry the originating campaign across the domain boundary into Cal.com, so a
-  // booked call is still traceable to the post that earned it. Resolved after
-  // mount because localStorage doesn't exist during SSR — the base URL renders
-  // first and is swapped once, before anyone can interact with the widget.
+  // booked call is still traceable to the post that earned it.
+  //
+  // localStorage doesn't exist during SSR, so this reads it as an external store:
+  // the server snapshot is the plain URL, the client snapshot adds the campaign
+  // params. useSyncExternalStore rather than useState+useEffect because setting
+  // state from an effect causes a cascading re-render (react-hooks/set-state-in-effect).
+  // Attribution never changes while the page is open, so the subscribe callback
+  // is a no-op, and getSnapshot returns a string — compared by value, so it is
+  // stable across renders and won't loop.
   const calBase = `https://cal.com/${CAL_LINK}`
-  const [calUrl, setCalUrl] = useState(calBase)
-  useEffect(() => {
-    setCalUrl(withAttributionParams(calBase))
-  }, [calBase])
+  const subscribe = useCallback(() => () => {}, [])
+  const calUrl = useSyncExternalStore(
+    subscribe,
+    useCallback(() => withAttributionParams(calBase), [calBase]),
+    useCallback(() => calBase, [calBase])
+  )
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
